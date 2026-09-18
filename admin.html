@@ -77,7 +77,7 @@
         .login-card header { margin-bottom: 20px; }
 
         .admin-panel {
-            max-width: 950px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -926,7 +926,7 @@
         }
 
         /* ============================================================
-           الجدول الجديد (الشكل المدرسي الأنيق)
+           الجدول الجديد (الشكل المدرسي الأنيق) — Responsive
            ============================================================ */
         .schedule-table-wrapper {
             width: 100%;
@@ -936,68 +936,100 @@
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             background: white;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #e2e8f0;
         }
 
         .schedule-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 4px;
             text-align: center;
             font-size: 13px;
             table-layout: fixed;
-            min-width: 820px;
-            background: white;
+            min-width: 780px;
+            background: transparent;
             border-radius: 12px;
-            overflow: hidden;
         }
 
         .schedule-table th {
-            background: #f8fafc;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
             color: #334155;
             font-weight: 700;
             font-size: 13px;
-            height: 48px;
-            border: 1px solid #e2e8f0;
+            height: 46px;
+            border: none;
+            border-radius: 10px;
             padding: 6px 4px;
             white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
 
         .schedule-table th.day-header {
-            background: #eef2ff;
-            color: #1e3a8a;
+            background: linear-gradient(135deg, #1e3a8a, #3a7bd5);
+            color: white;
             width: 90px;
             font-size: 14px;
-            border-left: 2px solid #cbd5e1;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
         }
 
         .schedule-table td {
-            border: 1px solid #e2e8f0;
-            padding: 8px 4px;
+            border: none;
+            padding: 6px 4px;
             vertical-align: middle;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
 
         .schedule-table td.day-cell {
-            background: #f8fafc;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
             font-weight: bold;
-            color: #1e3a8a;
+            color: #92400e;
             font-size: 14px;
             width: 90px;
-            border-left: 2px solid #cbd5e1;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(245, 158, 11, 0.15);
+            text-align: center;
+            padding: 10px 4px;
         }
 
         .schedule-table td.lesson-cell {
-            background: #ffffff;
-            transition: background 0.2s;
+            background: #f8fafc;
+            transition: all 0.25s ease;
             height: 78px;
-            min-width: 75px;
+            min-width: 70px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
         }
 
-        .schedule-table td.lesson-cell:hover { background: #f8fafc; }
-        .schedule-table td.lesson-cell.filled { background: #f8fafc; }
-        .schedule-table td.lesson-cell.double { background: #f0fdf4; }
+        .schedule-table td.lesson-cell:hover {
+            background: #eef2ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(58, 123, 213, 0.15);
+            border-color: #a5b4fc;
+        }
+
+        .schedule-table td.lesson-cell.filled {
+            background: linear-gradient(135deg, #ffffff, #f0f9ff);
+            border: 1.5px solid #bae6fd;
+        }
+
+        .schedule-table td.lesson-cell.filled:hover {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-color: #7dd3fc;
+        }
+
+        .schedule-table td.lesson-cell.double {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1.5px solid #86efac;
+        }
+
+        .schedule-table td.lesson-cell.double:hover {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-color: #4ade80;
+        }
 
         .lesson-content {
             display: flex;
@@ -1166,7 +1198,7 @@
 
         .schedules-search-results {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 12px;
             margin-top: 15px;
         }
@@ -1677,6 +1709,30 @@
             color: #64748b;
         }
 
+        /* ============================================================
+           Responsive Breakpoints — تكيف كامل مع كل الشاشات
+           ============================================================ */
+
+        @media (min-width: 1024px) {
+            .schedule-table-wrapper { padding: 16px; }
+            .schedule-table { font-size: 14px; }
+            .schedule-table th { font-size: 14px; height: 50px; }
+            .schedule-table td.lesson-cell { height: 88px; }
+            .lesson-subject { font-size: 14.5px; }
+            .lesson-teacher { font-size: 12.5px; }
+        }
+
+        @media (max-width: 900px) {
+            .schedule-table-wrapper { padding: 10px; }
+            .schedule-table { font-size: 12.5px; min-width: 720px; }
+            .schedule-table th { font-size: 12.5px; height: 44px; }
+            .schedule-table th.day-header { width: 80px; font-size: 13px; }
+            .schedule-table td.day-cell { width: 80px; font-size: 13px; padding: 8px 4px; }
+            .schedule-table td.lesson-cell { height: 72px; min-width: 65px; }
+            .lesson-subject { font-size: 12.5px; }
+            .lesson-teacher { font-size: 11px; }
+        }
+
         @media (max-width: 600px) {
             body { padding: 12px; padding-bottom: 90px; }
             header { padding: 18px 15px; border-radius: 18px; }
@@ -1716,17 +1772,42 @@
             .info-modal-body { padding: 18px; font-size: 13.5px; }
             .info-modal-header h3 { font-size: 16px; }
 
-            .schedule-table { font-size: 11px; }
-            .schedule-table th,
-            .schedule-table td { padding: 5px 2px; }
-            .schedule-table th.day-header,
-            .schedule-table td.day-cell {
-                width: 60px;
-                font-size: 11px;
+            .schedule-table-wrapper {
+                padding: 8px;
+                border-radius: 14px;
             }
-            .schedule-table td.lesson-cell { height: 65px; }
+            .schedule-table {
+                font-size: 11px;
+                min-width: 640px;
+                border-spacing: 3px;
+            }
+            .schedule-table th {
+                font-size: 11px;
+                height: 38px;
+                padding: 4px 2px;
+                border-radius: 8px;
+            }
+            .schedule-table th.day-header {
+                width: 65px;
+                font-size: 11.5px;
+            }
+            .schedule-table td {
+                padding: 4px 2px;
+            }
+            .schedule-table td.day-cell {
+                width: 65px;
+                font-size: 11.5px;
+                padding: 6px 2px;
+                border-radius: 8px;
+            }
+            .schedule-table td.lesson-cell {
+                height: 62px;
+                min-width: 55px;
+                border-radius: 8px;
+            }
             .lesson-subject { font-size: 11px; }
             .lesson-teacher { font-size: 9.5px; }
+            .lesson-content { gap: 3px; padding: 2px; }
 
             .log-modal { max-height: 90vh; }
             .log-modal-body { padding: 10px 12px 20px; }
@@ -1779,6 +1860,22 @@
                 width: 100%;
                 justify-content: center;
             }
+        }
+
+        @media (max-width: 380px) {
+            .schedule-table {
+                min-width: 580px;
+                border-spacing: 2px;
+            }
+            .schedule-table th {
+                font-size: 10px;
+                height: 34px;
+            }
+            .schedule-table th.day-header { width: 58px; font-size: 10.5px; }
+            .schedule-table td.day-cell { width: 58px; font-size: 10.5px; padding: 5px 2px; }
+            .schedule-table td.lesson-cell { height: 56px; min-width: 50px; }
+            .lesson-subject { font-size: 10px; }
+            .lesson-teacher { font-size: 9px; }
         }
 
         ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -3283,37 +3380,76 @@
             <h5 style="color: #1e3a8a; margin-bottom: 10px; text-align: right;">
                 📅 جدول المدرس: ${teacherName} ${teacherSubject ? `(${teacherSubject})` : ''}
             </h5>
+            <div class="schedule-table-wrapper">
+                <table class="schedule-table" style="min-width: 780px;">
+                    <thead>
+                        <tr>
+                            <th class="day-header">اليوم</th>
+                            <th>الحصة 1</th>
+                            <th>الحصة 2</th>
+                            <th>الحصة 3</th>
+                            <th>الحصة 4</th>
+                            <th>الحصة 5</th>
+                            <th>الحصة 6</th>
+                            <th>الحصة 7</th>
+                            <th>الحصة 8</th>
+                            <th>الحصة 9</th>
+                        </tr>
+                    </thead>
+                    <tbody>
         `;
 
-        const grouped = {};
-        WEEK_DAYS.forEach(day => { grouped[day] = []; });
-        assignments.forEach(a => {
-            if (grouped[a.day]) grouped[a.day].push(a);
+        WEEK_DAYS.forEach(day => {
+            const dayAssignments = {};
+            assignments.filter(a => a.day === day).forEach(a => {
+                dayAssignments[a.slot] = a;
+            });
+
+            html += `<tr>`;
+            html += `<td class="day-cell">${day}</td>`;
+
+            let slot = 1;
+            while (slot <= 9) {
+                const a = dayAssignments[slot];
+                if (a) {
+                    const isDouble = a.double && dayAssignments[slot + 1];
+                    const colspan = isDouble ? 2 : 1;
+                    const emoji = getSubjectEmoji(a.subject);
+                    const subjectDisplay = isDouble
+                        ? `${emoji} ${a.subject} (مزدوجة)`
+                        : `${emoji} ${a.subject}`;
+
+                    html += `
+                        <td class="lesson-cell filled ${isDouble ? 'double' : ''}" colspan="${colspan}">
+                            <div class="lesson-content">
+                                <div class="lesson-subject">${subjectDisplay}</div>
+                                <div class="lesson-teacher">
+                                    <i>🏫</i> ${a.className}
+                                </div>
+                            </div>
+                        </td>
+                    `;
+                    slot += colspan;
+                } else {
+                    html += `
+                        <td class="lesson-cell">
+                            <div class="lesson-content">
+                                <div class="lesson-subject" style="color: #cbd5e1;">—</div>
+                            </div>
+                        </td>
+                    `;
+                    slot++;
+                }
+            }
+
+            html += `</tr>`;
         });
 
-        WEEK_DAYS.forEach(day => {
-            if (grouped[day].length > 0) {
-                html += `
-                    <div style="margin-bottom: 10px; background: #f8fafc; border-radius: 10px; padding: 10px;">
-                        <div style="font-weight: bold; color: #1e3a8a; font-size: 14px; margin-bottom: 6px;">
-                            📆 ${day}
-                        </div>
-                        ${grouped[day].map(a => {
-                            const emoji = getSubjectEmoji(a.subject);
-                            return `
-                                <div class="teacher-schedule-item">
-                                    <strong>الحصة ${a.slot}${a.double ? ' (مزدوجة)' : ''}</strong>
-                                    — ${emoji} ${a.subject}
-                                    <span style="color: #64748b; font-size: 12px;">
-                                        (فصل ${a.className})
-                                    </span>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                `;
-            }
-        });
+        html += `
+                    </tbody>
+                </table>
+            </div>
+        `;
 
         scheduleView.innerHTML = html;
     };
@@ -3353,49 +3489,6 @@
                 }
             }
 
-            let lessonsHtml = '';
-            if (totalLessons > 0) {
-                let lessonsList = [];
-                WEEK_DAYS.forEach(day => {
-                    const daySchedule = weeklySchedule[day];
-                    if (daySchedule && Object.keys(daySchedule).length > 0) {
-                        Object.keys(daySchedule).sort((a,b)=>a-b).forEach(slot => {
-                            const lesson = daySchedule[slot];
-                            lessonsList.push({
-                                day,
-                                slot: parseInt(slot),
-                                subject: lesson.subject || lesson.name || '—',
-                                teacher: lesson.teacher || '—',
-                                double: lesson.double || false
-                            });
-                        });
-                    }
-                });
-
-                lessonsHtml = `
-                    <div class="schedule-lessons-list">
-                        ${lessonsList.map(l => `
-                            <div class="schedule-lesson-item">
-                                <div class="sl-info">
-                                    <div class="sl-title">
-                                        ${l.day} — الحصة ${l.slot}${l.double ? ' (مزدوجة)' : ''}
-                                    </div>
-                                    <div class="sl-details">
-                                        ${getSubjectEmoji(l.subject)} ${l.subject} — 👤 ${l.teacher}
-                                    </div>
-                                </div>
-                                <button class="sl-delete-btn"
-                                        onclick="deleteSingleLesson('${sch.id}', '${l.day}', ${l.slot})">
-                                    🗑️ حذف
-                                </button>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            } else {
-                lessonsHtml = `<div class="src-empty" style="padding: 12px;">لا توجد حصص مسجلة في هذا الجدول</div>`;
-            }
-
             return `
                 <div class="schedule-search-card">
                     <div class="sc-title">📅 ${sch.className || sch.id}</div>
@@ -3408,11 +3501,92 @@
                             🗑️ حذف الجدول بالكامل
                         </button>
                     </div>
-                    ${lessonsHtml}
+                    ${renderSchedulePreviewTable(sch)}
                 </div>
             `;
         }).join('');
     };
+
+    function renderSchedulePreviewTable(sch) {
+        const weeklySchedule = sch.weeklySchedule || {};
+        let hasAny = false;
+        WEEK_DAYS.forEach(day => {
+            if (weeklySchedule[day] && Object.keys(weeklySchedule[day]).length > 0) hasAny = true;
+        });
+        if (!hasAny) {
+            return `<div class="src-empty" style="padding: 12px;">لا توجد حصص مسجلة في هذا الجدول</div>`;
+        }
+
+        let html = `
+            <div class="schedule-table-wrapper" style="margin-top: 12px; padding: 8px;">
+                <table class="schedule-table" style="min-width: 640px;">
+                    <thead>
+                        <tr>
+                            <th class="day-header">اليوم</th>
+                            <th>ح1</th>
+                            <th>ح2</th>
+                            <th>ح3</th>
+                            <th>ح4</th>
+                            <th>ح5</th>
+                            <th>ح6</th>
+                            <th>ح7</th>
+                            <th>ح8</th>
+                            <th>ح9</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+
+        WEEK_DAYS.forEach(dayName => {
+            const daySchedule = weeklySchedule[dayName] || {};
+            html += `<tr>`;
+            html += `<td class="day-cell">${dayName}</td>`;
+
+            let slot = 1;
+            while (slot <= 9) {
+                const lesson = daySchedule[slot];
+                if (lesson) {
+                    const isDouble = lesson.double && daySchedule[slot + 1];
+                    const colspan = isDouble ? 2 : 1;
+                    const subject = lesson.subject || lesson.name || '—';
+                    const teacherName = lesson.teacher || '—';
+                    const emoji = getSubjectEmoji(subject);
+                    const subjectDisplay = isDouble
+                        ? `${emoji} ${subject} (مزدوجة)`
+                        : `${emoji} ${subject}`;
+
+                    html += `
+                        <td class="lesson-cell filled ${isDouble ? 'double' : ''}" colspan="${colspan}">
+                            <div class="lesson-content">
+                                <div class="lesson-subject">${subjectDisplay}</div>
+                                <div class="lesson-teacher"><i>👤</i> ${teacherName}</div>
+                            </div>
+                        </td>
+                    `;
+                    slot += colspan;
+                } else {
+                    html += `
+                        <td class="lesson-cell">
+                            <div class="lesson-content">
+                                <div class="lesson-subject" style="color: #cbd5e1;">—</div>
+                            </div>
+                        </td>
+                    `;
+                    slot++;
+                }
+            }
+
+            html += `</tr>`;
+        });
+
+        html += `
+                    </tbody>
+                </table>
+            </div>
+        `;
+
+        return html;
+    }
 
     window.deleteScheduleFull = async function(scheduleId, className) {
         const ok = await confirmModal(
@@ -4579,7 +4753,7 @@
 
         let tableHTML = `
             <div class="schedule-table-wrapper">
-                <table class="schedule-table" style="min-width: 900px;">
+                <table class="schedule-table" style="min-width: 780px;">
                     <thead>
                         <tr>
                             <th class="day-header">اليوم</th>
