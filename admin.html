@@ -332,7 +332,7 @@
         }
 
         /* ============================================================
-           🆕 القائمة الرئيسية (مع أيقونات المعلومات)
+           القائمة الرئيسية
            ============================================================ */
         .main-menu-grid {
             display: grid;
@@ -391,7 +391,7 @@
             background: linear-gradient(135deg, #be123c 0%, #e11d48 50%, #f43f5e 100%);
         }
 
-        /* 🆕 أيقونة المعلومات */
+        /* أيقونة المعلومات */
         .info-icon-btn {
             background: linear-gradient(135deg, #f59e0b, #fbbf24);
             color: white;
@@ -556,7 +556,7 @@
         .toast.info  { background: linear-gradient(135deg, #2563eb, #3b82f6); }
 
         /* ============================================================
-           Custom Modal (للتنبيهات والتأكيدات)
+           Custom Modal
            ============================================================ */
         .custom-modal-overlay {
             position: fixed;
@@ -685,7 +685,7 @@
         .custom-modal-btn:active { transform: translateY(0); }
 
         /* ============================================================
-           🆕 Info Modal (شرح الأزرار)
+           Info Modal
            ============================================================ */
         .info-modal-overlay {
             position: fixed;
@@ -1506,7 +1506,7 @@
         .log-detail-col { max-width: 350px; word-break: break-word; }
 
         /* ============================================================
-           📤 منطقة رفع Excel
+           منطقة رفع Excel
            ============================================================ */
         .excel-upload-area {
             background: linear-gradient(135deg, #f0fdf4, #dcfce7);
@@ -1559,7 +1559,7 @@
         }
 
         /* ============================================================
-           📊 معاينة Excel
+           معاينة Excel
            ============================================================ */
         .excel-preview-box {
             background: #f8fafc;
@@ -1631,7 +1631,7 @@
         .excel-table tr:hover td { background: #f8fafc; }
 
         /* ============================================================
-           🗑️ خيارات المسح (Checkbox)
+           خيارات المسح
            ============================================================ */
         .wipe-options {
             display: flex;
@@ -1787,7 +1787,8 @@
             background: rgba(58, 123, 213, 0.5);
         }
     </style>
-</head><body>
+</head>
+<body>
 
     <!-- ============================================================
          شاشة تسجيل الدخول
@@ -1839,7 +1840,7 @@
         </div>
 
         <!-- ============================================================
-             القائمة الرئيسية (مع أيقونات المعلومات 💡)
+             القائمة الرئيسية
              ============================================================ -->
         <div class="main-menu-grid">
 
@@ -1950,7 +1951,7 @@
         </div>
 
         <!-- ============================================================
-             قسم 2: 👨‍🏫 المدرسين
+             قسم 2: 👨‍🏫 المدرسين (مع التعديلات الجديدة)
              ============================================================ -->
         <div class="form-section" id="teachersTab">
             <h3>👨‍🏫 إدارة المدرسين</h3>
@@ -1964,6 +1965,18 @@
                     <label style="margin-top:10px;">المادة / اللغة:</label>
                     <input type="text" id="newTeacherSubject" placeholder="مثال: لغة عربية">
                     <button class="submit-btn" onclick="addTeacher()" style="margin-top:10px;">➕ إضافة المدرس</button>
+                </div>
+
+                <!-- ⭐ جديد: بحث وعرض جدول مدرس -->
+                <div style="background:#eef2ff; padding:15px; border-radius:12px; border:1px solid #a5b4fc; margin-top:20px;">
+                    <h4 style="color:#1e3a8a; margin-bottom:10px; text-align:right;">🔍 بحث وعرض جدول مدرس</h4>
+                    <div class="search-box">
+                        <input type="text" id="searchTeacherInput" 
+                               placeholder="اكتب اسم المدرس للبحث..."
+                               oninput="searchTeachers(this.value)">
+                    </div>
+                    <div class="search-results" id="searchTeacherResults"></div>
+                    <div id="teacherScheduleView" style="margin-top:15px;"></div>
                 </div>
 
                 <!-- قائمة المدرسين -->
@@ -2000,7 +2013,7 @@
                     </button>
                 </div>
 
-                <!-- 🎯 توزيع الحصص (Auto-Sync مع الجدول) -->
+                <!-- 🎯 توزيع الحصص -->
                 <div style="margin-top: 25px; border-top: 2px solid #eef2ff; padding-top: 15px;">
                     <h4 style="color: #1e3a8a; margin-bottom: 10px;">🎯 توزيع الحصص (Auto-Sync مع الجدول)</h4>
                     <p style="font-size: 12px; color: #64748b; margin-bottom: 10px; text-align: right; background: #eef2ff; padding: 8px 12px; border-radius: 8px;">
@@ -2053,7 +2066,11 @@
             </div>
         </div>
 
-        <!-- ============================================================
+        <!-- ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+             📌 [نهاية الجزء الأول] — الجزء الثاني هيكمل من هنا مباشرة
+             (باقي الـ HTML + كل الـ JavaScript + إغلاق الملف)
+             ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️ -->
+                     <!-- ============================================================
              قسم 3: 📅 الجدول
              ============================================================ -->
         <div class="form-section" id="scheduleTab">
@@ -2276,7 +2293,7 @@
             data-count="">📜</button>
 
     <!-- ============================================================
-         🆕 Modal المعلومات (Info Modal)
+         Info Modal
          ============================================================ -->
     <div class="info-modal-overlay" id="infoModalOverlay" onclick="closeInfoModalOnOverlay(event)">
         <div class="info-modal-box" onclick="event.stopPropagation()">
@@ -2291,7 +2308,7 @@
     </div>
 
     <!-- ============================================================
-         Modal سجل النشاطات (Activity Log)
+         Modal سجل النشاطات
          ============================================================ -->
     <div class="log-modal-overlay" id="logModalOverlay" onclick="closeActivityLogOnOverlay(event)">
         <div class="log-modal" onclick="event.stopPropagation()">
@@ -2318,7 +2335,7 @@
     </div>
 
     <!-- ============================================================
-         Custom Modal (للتنبيهات والتأكيدات)
+         Custom Modal
          ============================================================ -->
     <div class="custom-modal-overlay" id="customModalOverlay">
         <div class="custom-modal-box" onclick="event.stopPropagation()">
@@ -2346,6 +2363,7 @@
          Toast
          ============================================================ -->
     <div class="toast" id="toast"></div>
+
     <!-- ============================================================
          SheetJS (لقراءة ملفات Excel)
          ============================================================ -->
@@ -2375,7 +2393,7 @@
         };
 
         // ============================================================
-        // 🛡️ تهيئة Firebase مع try-catch (حماية من الشاشة البيضاء)
+        // 🛡️ تهيئة Firebase مع try-catch
         // ============================================================
         let appFirebase = null;
         let db = null;
@@ -2389,7 +2407,6 @@
         } catch (error) {
             console.error('❌ Firebase initialization failed:', error);
             firebaseInitError = error;
-            // عرض رسالة خطأ للمستخدم
             document.addEventListener('DOMContentLoaded', () => {
                 const loginBox = document.getElementById('loginBox');
                 if (loginBox) {
@@ -2408,7 +2425,7 @@
 
         const ADMIN_PASSWORD = "0000";
         const WEEK_DAYS = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس"];
-        const BATCH_SIZE = 450; // حد Firebase 500، نستخدم 450 للأمان
+        const BATCH_SIZE = 450;
 
         // ============================================================
         // قائمة المخالفات
@@ -2507,6 +2524,24 @@
 
         function classIdFromName(className) {
             return String(className || '').replace(/\s/g, '_').replace(/\//g, '_');
+        }
+
+        // ⭐ دالة جديدة: إرجاع إيموجي المادة
+        function getSubjectEmoji(subject) {
+            if (!subject) return '📘';
+            const s = String(subject).toLowerCase();
+            if (s.includes('عربي') || s.includes('لغة عربية') || s.includes('arabic')) return '🕌';
+            if (s.includes('رياضيات') || s.includes('حساب') || s.includes('math')) return '🔢';
+            if (s.includes('علوم') || s.includes('science')) return '🔬';
+            if (s.includes('إنجليزي') || s.includes('انجليزي') || s.includes('english')) return '🇬🇧';
+            if (s.includes('دراسات') || s.includes('اجتماعيات') || s.includes('social')) return '🌍';
+            if (s.includes('دين') || s.includes('تربية دينية') || s.includes('religion')) return '📖';
+            if (s.includes('كمبيوتر') || s.includes('حاسب') || s.includes('computer')) return '💻';
+            if (s.includes('رسم') || s.includes('فنية') || s.includes('art')) return '🎨';
+            if (s.includes('رياضة') || s.includes('تربية رياضية') || s.includes('sport')) return '⚽';
+            if (s.includes('موسيقى') || s.includes('music')) return '🎵';
+            if (s.includes('فرنساوي') || s.includes('فرنسي') || s.includes('french')) return '🇫🇷';
+            return '📘';
         }
 
         // ============================================================
@@ -2746,7 +2781,7 @@
         };
 
         // ============================================================
-        // 💡 Info Modal System (شرح الأزرار)
+        // Info Modal System
         // ============================================================
         const INFO_CONTENT = {
             upload: {
@@ -2757,7 +2792,6 @@
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
                         <p>بيرفع بيانات الطلاب كلهم دفعة واحدة من ملف Excel أو CSV، ويوزّعهم تلقائياً على الفصول والمراحل في قاعدة البيانات.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
@@ -2773,7 +2807,6 @@
                             <li>السيستم هيرفع البيانات على دفعات (Batch) — بدون Timeouts</li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>♻️ خاصية Upsert (الأهم!)</h4>
                         <p>لو الطالب <strong>موجود بالفعل</strong> بنفس الاسم + الفصل، السيستم:</p>
@@ -2786,7 +2819,6 @@
                             💡 يعني لو رفعت ملف فيه 369 طالب مرة، ورفعته تاني بعد شهر بعد إضافة 5 طلاب، السيستم هيحدّث الـ 369 ويضيف الـ 5 بس — بدون تكرار!
                         </div>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 الصيغة المدعومة</h4>
                         <ul>
@@ -2797,7 +2829,6 @@
                         <p><strong>المرحلة:</strong> الابتدائي / الإعدادي</p>
                         <p><strong>النوع:</strong> boy / girl أو ذكر / أنثى</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>⚡ المميزات</h4>
                         <ul>
@@ -2815,9 +2846,8 @@
                 content: `
                     <div class="info-modal-section">
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
-                        <p>إدارة كاملة للمدرسين: إضافة مدرس جديد، حذفه كلياً من المنظومة، أو إزالته من فصل معين فقط.</p>
+                        <p>إدارة كاملة للمدرسين: إضافة مدرس جديد، حذفه كلياً من المنظومة، أو إزالته من فصل معين فقط. بالإضافة إلى <strong>البحث عن مدرس وعرض جدوله الشخصي</strong>.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>➕ إضافة مدرس جديد</h4>
                         <ol>
@@ -2826,19 +2856,25 @@
                             <li>اضغط "إضافة المدرس"</li>
                         </ol>
                     </div>
-                    
+                    <div class="info-modal-section">
+                        <h4>🔍 بحث وعرض جدول مدرس</h4>
+                        <ol>
+                            <li>اكتب <strong>اسم المدرس</strong> في خانة البحث</li>
+                            <li>سيظهر المدرس في النتائج، اضغط عليه</li>
+                            <li>سيظهر لك <strong>جدوله الكامل</strong> (كل الأيام والحصص الخاصة به)</li>
+                        </ol>
+                    </div>
                     <div class="info-modal-section">
                         <h4>🗑️ حذف / إزالة مدرس</h4>
                         <p>عندك <strong>خيارين</strong>:</p>
                         <ul>
-                            <li><strong>🗑️ حذف كلي:</strong> يشيله من كل الفصول والجداول نهائياً (بـ Batch Writes — سريع جداً)</li>
+                            <li><strong>🗑️ حذف كلي:</strong> يشيله من كل الفصول والجداول نهائياً</li>
                             <li><strong>📤 إزالة من فصل:</strong> يشيله من جدول فصل معين بس (سيبقى في قائمة المدرسين)</li>
                         </ul>
                         <div class="warning-box">
                             ⚠️ الحذف الكلي لا يمكن التراجع عنه!
                         </div>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>🎯 توزيع الحصص (Auto-Sync)</h4>
                         <p>لما تختار مدرس + يوم + فصل + حصة:</p>
@@ -2846,9 +2882,6 @@
                             <li>✅ الحصة تظهر في <strong>جدول الفصل</strong></li>
                             <li>✅ وفي نفس الوقت تظهر في <strong>جدول المدرس</strong></li>
                         </ul>
-                        <div class="success-box">
-                            💡 مش محتاج تعدّل الجدولين يدوياً — بيتم تلقائياً!
-                        </div>
                     </div>
                 `
             },
@@ -2858,18 +2891,16 @@
                 content: `
                     <div class="info-modal-section">
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
-                        <p>عرض الجداول الأسبوعية لكل فصل (9 حصص × 5 أيام).</p>
+                        <p>عرض الجداول الأسبوعية لكل فصل (9 حصص × 5 أيام) مع إظهار <strong>اسم المادة</strong> و<strong>اسم المعلم</strong> و<strong>إيموجي المادة</strong>.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
                             <li>اختر <strong>الفصل</strong> من القائمة</li>
                             <li>اختر <strong>اليوم</strong> (الأحد → الخميس)</li>
-                            <li>هتشوف 9 خلايا (الحصة 1 → 9)</li>
+                            <li>هتشوف 9 خلايا (الحصة 1 → 9) مع اسم المادة، المعلم، وإيموجي المادة</li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>⚠️ ملاحظة مهمة</h4>
                         <div class="warning-box">
@@ -2886,7 +2917,6 @@
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
                         <p>تسجيل مخالفة سلوكية لطالب، مع خصم تلقائي من درجة السلوك.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
@@ -2898,7 +2928,6 @@
                             <li>اضغط <strong>"تسجيل السلوك"</strong></li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📊 أنواع المخالفات</h4>
                         <ul>
@@ -2907,7 +2936,6 @@
                             <li><strong>مخالفات ثقيلة:</strong> -50% (طالب مشاغب بناءً على تقرير)</li>
                         </ul>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>💡 ملاحظات مهمة</h4>
                         <ul>
@@ -2927,7 +2955,6 @@
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
                         <p>إرسال تنبيه عام لفصل معين (مع إمكانية إرفاق صورة).</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
@@ -2937,7 +2964,6 @@
                             <li>اضغط <strong>"إرسال التنبيه"</strong></li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📊 التنبيهات تظهر فين؟</h4>
                         <ul>
@@ -2946,7 +2972,6 @@
                             <li>✅ في "🔍 بحث/حذف التنبيهات"</li>
                         </ul>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>💡 ملاحظة عن حجم الصورة</h4>
                         <div class="warning-box">
@@ -2964,7 +2989,6 @@
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
                         <p>البحث عن جدول فصل معين وحذفه إما كاملاً أو حذف حصة معينة منه.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
@@ -2974,7 +2998,6 @@
                             <li>أو اضغط <span class="highlight">🗑️ حذف</span> بجانب حصة معينة</li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>⚠️ تحذيرات</h4>
                         <div class="warning-box">
@@ -2991,7 +3014,6 @@
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
                         <p>البحث في التنبيهات (باسم الفصل أو النص) وحذف تنبيه واحد أو كل تنبيهات فصل.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
@@ -3001,7 +3023,6 @@
                             <li>أو لو البحث باسم فصل → هتلاقي زر <span class="highlight">"حذف الكل"</span></li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>💡 نصيحة</h4>
                         <div class="success-box">
@@ -3018,7 +3039,6 @@
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
                         <p>حذف طالب نهائياً من قاعدة البيانات.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
@@ -3028,7 +3048,6 @@
                             <li>أكد العملية من الـ Modal</li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>⚠️ تحذيرات</h4>
                         <div class="warning-box">
@@ -3039,7 +3058,6 @@
                             <br>• صفحات الطلاب
                         </div>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>💡 نصيحة</h4>
                         <p>لو عايز تحدّث بيانات طالب بس، استخدم <strong>"📤 رفع ملف Excel/CSV"</strong> بدل الحذف — السيستم هيحدّث البيانات تلقائياً.</p>
@@ -3054,7 +3072,6 @@
                         <h4>🎯 الزرار ده بيعمل إيه؟</h4>
                         <p>مسح جماعي للبيانات (اختياري) من قاعدة البيانات.</p>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>📋 خطوات الاستخدام</h4>
                         <ol>
@@ -3068,7 +3085,6 @@
                             <li>أكد العملية مرتين (تأكيد مزدوج للأمان)</li>
                         </ol>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>⚠️ تحذيرات شديدة</h4>
                         <div class="warning-box">
@@ -3077,7 +3093,6 @@
                             يُنصح بعمل <strong>backup</strong> قبل المسح.
                         </div>
                     </div>
-                    
                     <div class="info-modal-section">
                         <h4>💡 نصيحة</h4>
                         <p>بدل ما تمسح كل الطلاب، استخدم <strong>"📤 رفع ملف Excel/CSV"</strong> — السيستم هيحدّث البيانات الموجودة ويضيف الجديدة بدون ما يمسح أي حاجة.</p>
@@ -3164,7 +3179,8 @@
                                 ${Object.keys(daySchedule).sort((a,b)=>a-b).map(slot => {
                                     const lesson = daySchedule[slot];
                                     const subject = lesson.subject || lesson.name || lesson;
-                                    return `<span>• حصة ${slot}: ${subject}</span>`;
+                                    const emoji = getSubjectEmoji(subject);
+                                    return `<span>• حصة ${slot}: ${emoji} ${subject}</span>`;
                                 }).join('')}
                             </div>
                         `;
@@ -3218,7 +3234,7 @@
         };
 
         // ============================================================
-        // البحث الداخلي
+        // البحث الداخلي (الطلاب)
         // ============================================================
         function searchStudents(query) {
             if (!query.trim() || query.length < 2) return [];
@@ -3303,6 +3319,124 @@
         };
 
         // ============================================================
+        // ⭐ جديد: البحث عن المدرسين وعرض جدولهم
+        // ============================================================
+        window.searchTeachers = function(query) {
+            const resultsBox = document.getElementById('searchTeacherResults');
+            const scheduleView = document.getElementById('teacherScheduleView');
+            if (!query.trim() || query.length < 2) {
+                resultsBox.classList.remove('show');
+                scheduleView.innerHTML = '';
+                return;
+            }
+
+            const q = query.trim().toLowerCase();
+            const results = teachersCache.filter(t =>
+                t.name && t.name.toLowerCase().includes(q)
+            ).slice(0, 25);
+
+            if (results.length === 0) {
+                resultsBox.innerHTML = '<div class="search-result-item sr-empty">لا توجد نتائج مطابقة</div>';
+                resultsBox.classList.add('show');
+                scheduleView.innerHTML = '';
+                return;
+            }
+
+            resultsBox.innerHTML = results.map(t => `
+                <div class="search-result-item"
+                     onclick="showTeacherSchedule('${t.id}', '${t.name.replace(/'/g, "\\'")}', '${(t.subject || '').replace(/'/g, "\\'")}')">
+                    <span>${t.name}</span>
+                    <span style="font-size: 12px; color: #64748b;">${t.subject || '—'}</span>
+                </div>
+            `).join('');
+            resultsBox.classList.add('show');
+        };
+
+        window.showTeacherSchedule = function(teacherId, teacherName, teacherSubject) {
+            const resultsBox = document.getElementById('searchTeacherResults');
+            const scheduleView = document.getElementById('teacherScheduleView');
+            resultsBox.classList.remove('show');
+            document.getElementById('searchTeacherInput').value = teacherName;
+
+            // جمع كل حصص المدرس من schedulesCache
+            const assignments = [];
+            for (const classId in schedulesCache) {
+                const schedule = schedulesCache[classId];
+                const weeklySchedule = schedule.weeklySchedule || {};
+                for (const day in weeklySchedule) {
+                    for (const slot in weeklySchedule[day]) {
+                        const lesson = weeklySchedule[day][slot];
+                        if (lesson.teacherId === teacherId || (lesson.teacher || '') === teacherName) {
+                            assignments.push({
+                                className: schedule.className || classId,
+                                day,
+                                slot: parseInt(slot),
+                                subject: lesson.subject || teacherSubject || '—',
+                                double: lesson.double || false
+                            });
+                        }
+                    }
+                }
+            }
+
+            if (assignments.length === 0) {
+                scheduleView.innerHTML = `
+                    <div style="padding: 15px; text-align: center; color: #94a3b8;
+                                background: #f8fafc; border-radius: 10px;">
+                        لا توجد حصص مخصصة لهذا المدرس بعد
+                    </div>
+                `;
+                return;
+            }
+
+            // ترتيب حسب الأيام والحصص
+            assignments.sort((a, b) => {
+                const dayDiff = WEEK_DAYS.indexOf(a.day) - WEEK_DAYS.indexOf(b.day);
+                if (dayDiff !== 0) return dayDiff;
+                return a.slot - b.slot;
+            });
+
+            let html = `
+                <h5 style="color: #1e3a8a; margin-bottom: 10px; text-align: right;">
+                    📅 جدول المدرس: ${teacherName} ${teacherSubject ? `(${teacherSubject})` : ''}
+                </h5>
+            `;
+
+            // تجميع الحصص حسب اليوم
+            const grouped = {};
+            WEEK_DAYS.forEach(day => { grouped[day] = []; });
+            assignments.forEach(a => {
+                if (grouped[a.day]) grouped[a.day].push(a);
+            });
+
+            WEEK_DAYS.forEach(day => {
+                if (grouped[day].length > 0) {
+                    html += `
+                        <div style="margin-bottom: 10px; background: #f8fafc; border-radius: 10px; padding: 10px;">
+                            <div style="font-weight: bold; color: #1e3a8a; font-size: 14px; margin-bottom: 6px;">
+                                📆 ${day}
+                            </div>
+                            ${grouped[day].map(a => {
+                                const emoji = getSubjectEmoji(a.subject);
+                                return `
+                                    <div class="teacher-schedule-item">
+                                        <strong>الحصة ${a.slot}${a.double ? ' (مزدوجة)' : ''}</strong>
+                                        — ${emoji} ${a.subject}
+                                        <span style="color: #64748b; font-size: 12px;">
+                                            (فصل ${a.className})
+                                        </span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                }
+            });
+
+            scheduleView.innerHTML = html;
+        };
+
+        // ============================================================
         // البحث عن الجداول وحذفها
         // ============================================================
         window.searchSchedules = function(query) {
@@ -3368,7 +3502,7 @@
                                             ${l.day} — الحصة ${l.slot}${l.double ? ' (مزدوجة)' : ''}
                                         </div>
                                         <div class="sl-details">
-                                            ${l.subject} — 👤 ${l.teacher}
+                                            ${getSubjectEmoji(l.subject)} ${l.subject} — 👤 ${l.teacher}
                                         </div>
                                     </div>
                                     <button class="sl-delete-btn"
@@ -3852,9 +3986,6 @@
             try {
                 showToast('⏳ جاري معالجة البيانات...', 'info');
 
-                // ============================================================
-                // 1️⃣ بناء خريطة للطلاب الموجودين (name+class → id)
-                // ============================================================
                 const existingStudentsMap = new Map();
                 studentsCache.forEach(s => {
                     if (s.name && s.class) {
@@ -3863,9 +3994,6 @@
                     }
                 });
 
-                // ============================================================
-                // 2️⃣ فصل البيانات: تحديثات (upsert) vs إضافات جديدة
-                // ============================================================
                 const updates = [];
                 const additions = [];
                 const seenKeys = new Set();
@@ -3903,13 +4031,9 @@
 
                 console.log(`📊 التحليل: ${updates.length} تحديث، ${additions.length} إضافة جديدة`);
 
-                // ============================================================
-                // 3️⃣ تنفيذ التحديثات والإضافات على دفعات (Batch Writes)
-                // ============================================================
                 let totalUpdated = 0;
                 let totalAdded = 0;
 
-                // --- 3a: التحديثات (Upsert) ---
                 if (updates.length > 0) {
                     for (let i = 0; i < updates.length; i += BATCH_SIZE) {
                         const batch = writeBatch(db);
@@ -3927,7 +4051,6 @@
                     }
                 }
 
-                // --- 3b: الإضافات الجديدة (مع حفظ IDs) ---
                 const newlyAddedStudents = [];
 
                 if (additions.length > 0) {
@@ -3945,7 +4068,6 @@
                         await batch.commit();
                         totalAdded += chunk.length;
 
-                        // حفظ المراجع للـ cache
                         chunkRefs.forEach(item => {
                             newlyAddedStudents.push({
                                 id: item.ref.id,
@@ -3958,11 +4080,6 @@
                     }
                 }
 
-                // ============================================================
-                // 4️⃣ تحديث الـ Cache المحلي فوراً (Cache Update - جديد!)
-                // ============================================================
-
-                // 4a: تحديث الطلاب الموجودين في cache
                 updates.forEach(u => {
                     const idx = studentsCache.findIndex(s => s.id === u.id);
                     if (idx !== -1) {
@@ -3970,7 +4087,6 @@
                     }
                 });
 
-                // 4b: إضافة الطلاب الجداد للـ cache فوراً ⚡
                 newlyAddedStudents.forEach(newStudent => {
                     const exists = studentsCache.some(s => s.id === newStudent.id);
                     if (!exists) {
@@ -3980,12 +4096,8 @@
 
                 console.log(`⚡ تم تحديث Cache: ${totalUpdated} تعديل + ${totalAdded} إضافة جديدة`);
 
-                // تحديث القوائم المنسدلة
                 fillClassSelects();
 
-                // ============================================================
-                // 5️⃣ إنشاء مستندات الفصول (schedules) الفارغة
-                // ============================================================
                 const uniqueClasses = new Set(excelParsedData.map(s => s.class));
                 let newClassesCreated = 0;
 
@@ -4003,9 +4115,6 @@
                     }
                 }
 
-                // ============================================================
-                // 6️⃣ تسجيل النشاط
-                // ============================================================
                 await logActivity('seed', '📤 رفع ملف Excel (Batch + Upsert)',
                     `تحديث ${totalUpdated} طالب — إضافة ${totalAdded} طالب جديد — ${uniqueClasses.size} فصل`,
                     {
@@ -4016,9 +4125,6 @@
                     }
                 );
 
-                // ============================================================
-                // 7️⃣ رسالة النجاح النهائية
-                // ============================================================
                 showToast(`✅ تم الرفع: ${totalUpdated} تحديث + ${totalAdded} جديد`);
 
                 await alertModal(
@@ -4233,9 +4339,6 @@
             }
         };
 
-        // ============================================================
-        // 🚀 حذف/إزالة مدرس (بـ Batch Writes - أسرع 5x)
-        // ============================================================
         window.confirmDeleteTeacher = async function() {
             const teacherId = document.getElementById('deleteTeacherSelect').value;
             const type = document.getElementById('deleteTeacherType').value;
@@ -4252,9 +4355,6 @@
             if (!teacher) { showToast('❌ المدرس غير موجود', 'error'); return; }
 
             if (type === 'full') {
-                // ============================================================
-                // 🗑️ حذف كلي (بـ Batch Writes - أسرع)
-                // ============================================================
                 const ok = await confirmModal(
                     '🗑️ حذف كلي للمدرس',
                     `هل أنت متأكد من حذف المدرس "${teacher.name}" نهائياً من المنظومة بالكامل؟\n\n⚠️ سيتم إزالته من كل الفصول وجداوله.`,
@@ -4265,10 +4365,8 @@
                 try {
                     showToast('⏳ جاري الحذف...', 'info');
 
-                    // 1️⃣ حذف المدرس من collection teachers
                     await deleteDoc(doc(db, 'teachers', teacherId));
 
-                    // 2️⃣ تجميع الجداول اللي فيها المدرس + تعديلها
                     let removedFromCount = 0;
                     const schedulesToUpdate = [];
 
@@ -4296,7 +4394,6 @@
                         }
                     }
 
-                    // 3️⃣ تنفيذ كل التعديلات في Batch واحد (أسرع بكتير) 🚀
                     if (schedulesToUpdate.length > 0) {
                         for (let i = 0; i < schedulesToUpdate.length; i += BATCH_SIZE) {
                             const batch = writeBatch(db);
@@ -4310,7 +4407,6 @@
 
                             await batch.commit();
 
-                            // تحديث الـ cache المحلي
                             chunk.forEach(item => {
                                 if (schedulesCache[item.classId]) {
                                     schedulesCache[item.classId].weeklySchedule = item.weeklySchedule;
@@ -4319,12 +4415,10 @@
                         }
                     }
 
-                    // 4️⃣ تحديث الـ cache
                     teachersCache = teachersCache.filter(t => t.id !== teacherId);
                     renderTeachersList();
                     fillTeachersSelect();
 
-                    // 5️⃣ Log Activity
                     await logActivity('delete', '🗑️ حذف مدرس نهائياً',
                         `المدرس: ${teacher.name} — تم إزالته من ${removedFromCount} حصة`,
                         { teacherName: teacher.name, removedSlots: removedFromCount }
@@ -4345,9 +4439,6 @@
                     showToast('❌ حدث خطأ', 'error');
                 }
             } else {
-                // ============================================================
-                // 📤 إزالة من فصل معين
-                // ============================================================
                 const ok = await confirmModal(
                     '📤 إزالة من فصل',
                     `هل تريد إزالة المدرس "${teacher.name}" من جدول الفصل "${className}" فقط؟\n\n(سيبقى المدرس في قائمة المدرسين)`,
@@ -4588,7 +4679,7 @@
                     <div class="teacher-schedule-item">
                         <strong>${a.day} — الحصة ${a.slot}</strong>
                         <span style="color: #64748b; font-size: 13px;">
-                            (${a.className}) — ${a.subject}
+                            (${a.className}) — ${getSubjectEmoji(a.subject)} ${a.subject}
                         </span>
                     </div>
                 `).join('')}
@@ -4641,10 +4732,11 @@
                     cell.classList.add('filled');
                     if (lesson.double) cell.classList.add('double');
                 }
+                const emoji = lesson ? getSubjectEmoji(lesson.subject) : '';
                 cell.innerHTML = `
                     <div class="period-num">${i}</div>
                     <div class="teacher-name">
-                        ${lesson ? `${lesson.subject}<br><small>${lesson.teacher}</small>` : '—'}
+                        ${lesson ? `${emoji} ${lesson.subject}<br><small>👤 ${lesson.teacher}</small>` : '—'}
                     </div>
                 `;
                 grid.appendChild(cell);
@@ -4789,14 +4881,10 @@
             document.getElementById('alertCounter').textContent = words;
         };
 
-        // ============================================================
-        // 🖼️ معاينة صورة التنبيه (300KB للأمان - تم التعديل)
-        // ============================================================
         window.previewAlertImage = function(event) {
             const file = event.target.files[0];
             if (!file) { alertImageBase64 = null; return; }
 
-            // ✅ تم التعديل: 300KB بدل 500KB للأمان
             if (file.size > 300 * 1024) {
                 showToast('⚠️ حجم الصورة كبير — الحد الأقصى 300KB', 'error');
                 event.target.value = '';
