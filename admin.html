@@ -332,7 +332,7 @@
         }
 
         /* ============================================================
-           القائمة الرئيسية
+           🆕 القائمة الرئيسية (مع أيقونات المعلومات)
            ============================================================ */
         .main-menu-grid {
             display: grid;
@@ -340,6 +340,18 @@
             gap: 12px;
             margin-bottom: 25px;
         }
+
+        .menu-btn-wrapper {
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            gap: 6px;
+        }
+        .menu-btn-wrapper .menu-btn {
+            flex: 1;
+            margin: 0;
+        }
+
         .menu-btn {
             padding: 18px 12px;
             border: none;
@@ -378,6 +390,31 @@
         .menu-btn.danger {
             background: linear-gradient(135deg, #be123c 0%, #e11d48 50%, #f43f5e 100%);
         }
+
+        /* 🆕 أيقونة المعلومات */
+        .info-icon-btn {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: white;
+            border: none;
+            width: 40px;
+            min-width: 40px;
+            border-radius: 16px;
+            font-size: 18px;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+        }
+        .info-icon-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.5);
+            background: linear-gradient(135deg, #e67e22, #f59e0b);
+        }
+        .info-icon-btn:active { transform: translateY(-1px); }
 
         /* ============================================================
            الأقسام (Tabs)
@@ -519,7 +556,7 @@
         .toast.info  { background: linear-gradient(135deg, #2563eb, #3b82f6); }
 
         /* ============================================================
-           Modal احترافي
+           Custom Modal (للتنبيهات والتأكيدات)
            ============================================================ */
         .custom-modal-overlay {
             position: fixed;
@@ -646,6 +683,154 @@
         }
         .custom-modal-btn:hover { transform: translateY(-2px); }
         .custom-modal-btn:active { transform: translateY(0); }
+
+        /* ============================================================
+           🆕 Info Modal (شرح الأزرار)
+           ============================================================ */
+        .info-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 6000;
+            padding: 20px;
+        }
+        .info-modal-overlay.show {
+            display: flex;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .info-modal-box {
+            background: white;
+            border-radius: 22px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.35s ease;
+        }
+
+        .info-modal-header {
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fcd34d 100%);
+            color: white;
+            border-radius: 22px 22px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-modal-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.3), transparent 60%);
+            pointer-events: none;
+        }
+        .info-modal-header h3 {
+            font-size: 18px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-modal-close {
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 17px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            font-family: inherit;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .info-modal-close:hover { background: rgba(255, 255, 255, 0.4); }
+
+        .info-modal-body {
+            padding: 24px;
+            text-align: right;
+            color: #1e293b;
+            font-size: 14.5px;
+            line-height: 1.85;
+        }
+
+        .info-modal-section {
+            margin-bottom: 18px;
+            padding: 14px 16px;
+            background: #f8fafc;
+            border-radius: 14px;
+            border-right: 4px solid #f59e0b;
+        }
+        .info-modal-section:last-child { margin-bottom: 0; }
+
+        .info-modal-section h4 {
+            color: #1e3a8a;
+            font-size: 15px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-modal-section p {
+            font-size: 14px;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+        .info-modal-section p:last-child { margin-bottom: 0; }
+
+        .info-modal-section ol,
+        .info-modal-section ul {
+            padding-right: 22px;
+            margin: 6px 0;
+        }
+        .info-modal-section li {
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.75;
+        }
+
+        .info-modal-section .highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: #92400e;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .info-modal-section .success-box {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: #15803d;
+            font-size: 13.5px;
+            margin-top: 8px;
+            border-right: 3px solid #16a34a;
+        }
+        .info-modal-section .warning-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: #92400e;
+            font-size: 13.5px;
+            margin-top: 8px;
+            border-right: 3px solid #f39c12;
+        }
 
         /* ============================================================
            البحث الداخلي
@@ -896,7 +1081,7 @@
         }
 
         /* ============================================================
-           🆕 بحث وحذف التنبيهات
+           بحث وحذف التنبيهات
            ============================================================ */
         .alerts-search-results {
             background: #f8fafc;
@@ -962,7 +1147,7 @@
         }
 
         /* ============================================================
-           🆕 بحث وحذف الجداول
+           بحث وحذف الجداول
            ============================================================ */
         .schedules-search-results {
             display: grid;
@@ -1026,24 +1211,7 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(190, 18, 60, 0.3);
         }
-        .sc-btn.info {
-            background: linear-gradient(135deg, #3a7bd5, #2563eb);
-            color: white;
-        }
-        .sc-btn.info:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
-        }
-        .sc-btn.warning {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            color: white;
-        }
-        .sc-btn.warning:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
-        }
 
-        /* قائمة الحصص داخل بطاقة الجدول */
         .schedule-lessons-list {
             margin-top: 12px;
             padding-top: 12px;
@@ -1525,6 +1693,13 @@
                 gap: 10px;
             }
             .menu-btn { font-size: 12px; padding: 14px 8px; }
+            .menu-btn-wrapper { gap: 4px; }
+            .info-icon-btn {
+                width: 36px;
+                min-width: 36px;
+                font-size: 16px;
+                border-radius: 14px;
+            }
 
             .form-section { padding: 18px; border-radius: 18px; }
             .form-section h3 { font-size: 16px; }
@@ -1542,6 +1717,10 @@
             .custom-modal-body { padding: 18px; }
             .custom-modal-actions { flex-direction: column; }
             .custom-modal-btn { width: 100%; }
+
+            .info-modal-box { border-radius: 18px; }
+            .info-modal-body { padding: 18px; font-size: 13.5px; }
+            .info-modal-header h3 { font-size: 16px; }
 
             .schedule-grid { grid-template-columns: repeat(3, 1fr); }
 
@@ -1660,18 +1839,64 @@
         </div>
 
         <!-- ============================================================
-             القائمة الرئيسية
+             القائمة الرئيسية (مع أيقونات المعلومات 💡)
              ============================================================ -->
         <div class="main-menu-grid">
-            <button class="menu-btn success" onclick="showTab('uploadTab')">📤 رفع ملف Excel/CSV</button>
-            <button class="menu-btn" onclick="showTab('teachersTab')">👨‍🏫 المدرسين</button>
-            <button class="menu-btn" onclick="showTab('scheduleTab')">📅 الجدول</button>
-            <button class="menu-btn" onclick="showTab('behaviorTab')">📝 سلوك الطلاب</button>
-            <button class="menu-btn" onclick="showTab('alertsTab')">🔔 التنبيهات</button>
-            <button class="menu-btn" onclick="showTab('manageSchedulesTab')">🔍 بحث/حذف الجداول</button>
-            <button class="menu-btn" onclick="showTab('manageAlertsTab')">🔍 بحث/حذف التنبيهات</button>
-            <button class="menu-btn" onclick="showTab('removeTab')">🗑️ إزالة طالب</button>
-            <button class="menu-btn danger" onclick="showTab('wipeTab')">⚠️ مسح البيانات</button>
+
+            <!-- زر رفع Excel -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn success" onclick="showTab('uploadTab')">📤 رفع ملف Excel/CSV</button>
+                <button class="info-icon-btn" onclick="showInfoModal('upload')" title="معلومات عن رفع الملف">💡</button>
+            </div>
+
+            <!-- زر المدرسين -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn" onclick="showTab('teachersTab')">👨‍🏫 المدرسين</button>
+                <button class="info-icon-btn" onclick="showInfoModal('teachers')" title="معلومات عن المدرسين">💡</button>
+            </div>
+
+            <!-- زر الجدول -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn" onclick="showTab('scheduleTab')">📅 الجدول</button>
+                <button class="info-icon-btn" onclick="showInfoModal('schedule')" title="معلومات عن الجدول">💡</button>
+            </div>
+
+            <!-- زر سلوك الطلاب -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn" onclick="showTab('behaviorTab')">📝 سلوك الطلاب</button>
+                <button class="info-icon-btn" onclick="showInfoModal('behavior')" title="معلومات عن السلوك">💡</button>
+            </div>
+
+            <!-- زر التنبيهات -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn" onclick="showTab('alertsTab')">🔔 التنبيهات</button>
+                <button class="info-icon-btn" onclick="showInfoModal('alerts')" title="معلومات عن التنبيهات">💡</button>
+            </div>
+
+            <!-- زر بحث/حذف الجداول -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn" onclick="showTab('manageSchedulesTab')">🔍 بحث/حذف الجداول</button>
+                <button class="info-icon-btn" onclick="showInfoModal('manageSchedules')" title="معلومات عن بحث الجداول">💡</button>
+            </div>
+
+            <!-- زر بحث/حذف التنبيهات -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn" onclick="showTab('manageAlertsTab')">🔍 بحث/حذف التنبيهات</button>
+                <button class="info-icon-btn" onclick="showInfoModal('manageAlerts')" title="معلومات عن بحث التنبيهات">💡</button>
+            </div>
+
+            <!-- زر إزالة طالب -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn" onclick="showTab('removeTab')">🗑️ إزالة طالب</button>
+                <button class="info-icon-btn" onclick="showInfoModal('remove')" title="معلومات عن الإزالة">💡</button>
+            </div>
+
+            <!-- زر مسح البيانات -->
+            <div class="menu-btn-wrapper">
+                <button class="menu-btn danger" onclick="showTab('wipeTab')">⚠️ مسح البيانات</button>
+                <button class="info-icon-btn" onclick="showInfoModal('wipe')" title="معلومات عن المسح">💡</button>
+            </div>
+
         </div>
 
         <!-- ============================================================
@@ -1899,7 +2124,8 @@
 
                 <label>صورة (اختياري - حد أقصى 500KB):</label>
                 <input type="file" id="alertImage" accept="image/*" onchange="previewAlertImage(event)">
-                <img id="alertImagePreview" class="image-preview hidden" alt="معاينة">
+                <img id="alertImagePreview" class="hidden" 
+                     style="max-width: 200px; max-height: 150px; border-radius: 8px; margin-top: 8px; border: 2px dashed #cbd5e1; padding: 4px;" alt="معاينة">
 
                 <button class="submit-btn" onclick="sendAlert()">🔔 إرسال التنبيه</button>
 
@@ -2050,7 +2276,22 @@
             data-count="">📜</button>
 
     <!-- ============================================================
-         Modal سجل النشاطات
+         🆕 Modal المعلومات (Info Modal)
+         ============================================================ -->
+    <div class="info-modal-overlay" id="infoModalOverlay" onclick="closeInfoModalOnOverlay(event)">
+        <div class="info-modal-box" onclick="event.stopPropagation()">
+            <div class="info-modal-header">
+                <h3 id="infoModalTitle">💡 معلومات</h3>
+                <button class="info-modal-close" onclick="closeInfoModal()">✕</button>
+            </div>
+            <div class="info-modal-body" id="infoModalBody">
+                <!-- يتم ملؤه من JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         Modal سجل النشاطات (Activity Log)
          ============================================================ -->
     <div class="log-modal-overlay" id="logModalOverlay" onclick="closeActivityLogOnOverlay(event)">
         <div class="log-modal" onclick="event.stopPropagation()">
@@ -2133,11 +2374,41 @@
             appId: "1:882767624230:web:90c6b11bd96801a28a4ae7"
         };
 
-        const appFirebase = initializeApp(firebaseConfig);
-        const db = getFirestore(appFirebase);
+        // ============================================================
+        // 🛡️ تهيئة Firebase مع try-catch (حماية من الشاشة البيضاء)
+        // ============================================================
+        let appFirebase = null;
+        let db = null;
+        let firebaseInitError = null;
+
+        try {
+            appFirebase = initializeApp(firebaseConfig);
+            db = getFirestore(appFirebase);
+            console.log('✅ Firebase initialized successfully');
+            console.log('📦 Project:', firebaseConfig.projectId);
+        } catch (error) {
+            console.error('❌ Firebase initialization failed:', error);
+            firebaseInitError = error;
+            // عرض رسالة خطأ للمستخدم
+            document.addEventListener('DOMContentLoaded', () => {
+                const loginBox = document.getElementById('loginBox');
+                if (loginBox) {
+                    loginBox.innerHTML = `
+                        <header>
+                            <h2>❌ فشل الاتصال بـ Firebase</h2>
+                            <p>تحقق من إعدادات Firebase</p>
+                        </header>
+                        <div style="padding: 20px; text-align: center; color: #be123c; font-weight: bold;">
+                            ${error.message || 'حدث خطأ في الاتصال'}
+                        </div>
+                    `;
+                }
+            });
+        }
 
         const ADMIN_PASSWORD = "0000";
         const WEEK_DAYS = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس"];
+        const BATCH_SIZE = 450; // حد Firebase 500، نستخدم 450 للأمان
 
         // ============================================================
         // قائمة المخالفات
@@ -2175,7 +2446,6 @@
         let isTeachersLoaded = false;
         let isSchedulesLoaded = false;
 
-        let syncLogItems = [];
         let currentUser = '';
         let userIP = 'غير معروف';
         let activityLogsCache = [];
@@ -2186,87 +2456,11 @@
         let excelStats = null;
 
         // ============================================================
-        // Custom Modal System
-        // ============================================================
-        let customModalResolve = null;
-
-        window.showCustomModal = function(options) {
-            return new Promise((resolve) => {
-                customModalResolve = resolve;
-                const overlay = document.getElementById('customModalOverlay');
-                const header = document.getElementById('customModalHeader');
-                const headerText = document.getElementById('customModalHeaderText');
-                const icon = document.getElementById('customModalIcon');
-                const title = document.getElementById('customModalTitle');
-                const text = document.getElementById('customModalText');
-                const cancelBtn = document.getElementById('customModalCancelBtn');
-                const confirmBtn = document.getElementById('customModalConfirmBtn');
-
-                header.className = 'custom-modal-header';
-                cancelBtn.className = 'custom-modal-btn secondary';
-                confirmBtn.className = 'custom-modal-btn primary';
-
-                const type = options.type || 'info';
-                icon.textContent = options.icon || (type === 'danger' ? '⚠️' : type === 'success' ? '✅' : '💬');
-                title.textContent = options.title || 'تنبيه';
-                text.innerHTML = (options.text || '').replace(/\n/g, '<br>');
-                cancelBtn.textContent = options.cancelText || 'إلغاء';
-                confirmBtn.textContent = options.confirmText || 'تأكيد';
-
-                if (options.onlyConfirm) {
-                    cancelBtn.style.display = 'none';
-                } else {
-                    cancelBtn.style.display = '';
-                }
-
-                if (type === 'danger') {
-                    header.classList.add('danger');
-                    confirmBtn.classList.add('danger');
-                    headerText.textContent = options.title || '⚠️ تحذير';
-                } else if (type === 'success') {
-                    header.classList.add('success');
-                    confirmBtn.classList.add('success');
-                    headerText.textContent = options.title || '✅ نجاح';
-                } else if (type === 'info') {
-                    header.classList.add('info');
-                    headerText.textContent = options.title || '💬 معلومة';
-                }
-
-                overlay.classList.add('show');
-            });
-        };
-
-        window.closeCustomModal = function(result) {
-            document.getElementById('customModalOverlay').classList.remove('show');
-            if (customModalResolve) {
-                customModalResolve(result);
-                customModalResolve = null;
-            }
-        };
-
-        window.confirmModal = function(title, text, options = {}) {
-            return showCustomModal({
-                title, text, type: options.type || 'danger',
-                confirmText: options.confirmText || 'تأكيد',
-                cancelText: options.cancelText || 'إلغاء',
-                icon: options.icon
-            });
-        };
-
-        window.alertModal = function(title, text, type = 'info') {
-            return showCustomModal({
-                title, text, type,
-                confirmText: 'حسناً',
-                onlyConfirm: true,
-                icon: type === 'success' ? '✅' : type === 'danger' ? '⚠️' : '💬'
-            });
-        };
-
-        // ============================================================
         // دوال مساعدة
         // ============================================================
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
+            if (!toast) return;
             toast.textContent = message;
             toast.className = 'toast show' + (type === 'error' ? ' error' : type === 'info' ? ' info' : '');
             setTimeout(() => toast.classList.remove('show'), 3500);
@@ -2274,6 +2468,14 @@
 
         function updateConnectionStatus() {
             const status = document.getElementById('connectionStatus');
+            if (!status) return;
+
+            if (firebaseInitError) {
+                status.className = 'connection-status disconnected';
+                status.textContent = `❌ خطأ في الاتصال: ${firebaseInitError.message}`;
+                return;
+            }
+
             if (isStudentsLoaded && isTeachersLoaded && isSchedulesLoaded) {
                 const studentCount = studentsCache.length;
                 const teacherCount = teachersCache.length;
@@ -2325,7 +2527,7 @@
         // سجل النشاطات
         // ============================================================
         async function logActivity(actionType, actionTitle, details = '', extraData = {}) {
-            if (!currentUser) return;
+            if (!currentUser || !db) return;
             try {
                 const logEntry = {
                     username: currentUser,
@@ -2349,6 +2551,7 @@
         }
 
         function startActivityLogListener() {
+            if (!db) return;
             if (activityLogsUnsubscribe) activityLogsUnsubscribe();
             const q = query(collection(db, 'activity_logs'), orderBy('timestamp', 'desc'), limit(500));
             activityLogsUnsubscribe = onSnapshot(q, (snapshot) => {
@@ -2358,7 +2561,7 @@
                 });
                 const btn = document.getElementById('activityLogBtn');
                 if (btn) btn.dataset.count = activityLogsCache.length > 99 ? '99+' : String(activityLogsCache.length);
-                if (document.getElementById('logModalOverlay').classList.contains('show')) {
+                if (document.getElementById('logModalOverlay')?.classList.contains('show')) {
                     renderActivityLogsTable(activityLogsCache);
                 }
             }, (error) => console.error('❌ خطأ في تحميل السجل:', error));
@@ -2462,6 +2665,453 @@
             } catch (error) {
                 console.error(error);
                 showToast('❌ فشل مسح السجل', 'error');
+            }
+        };
+
+        // ============================================================
+        // Custom Modal System
+        // ============================================================
+        let customModalResolve = null;
+
+        window.showCustomModal = function(options) {
+            return new Promise((resolve) => {
+                customModalResolve = resolve;
+                const overlay = document.getElementById('customModalOverlay');
+                const header = document.getElementById('customModalHeader');
+                const headerText = document.getElementById('customModalHeaderText');
+                const icon = document.getElementById('customModalIcon');
+                const title = document.getElementById('customModalTitle');
+                const text = document.getElementById('customModalText');
+                const cancelBtn = document.getElementById('customModalCancelBtn');
+                const confirmBtn = document.getElementById('customModalConfirmBtn');
+
+                header.className = 'custom-modal-header';
+                cancelBtn.className = 'custom-modal-btn secondary';
+                confirmBtn.className = 'custom-modal-btn primary';
+
+                const type = options.type || 'info';
+                icon.textContent = options.icon || (type === 'danger' ? '⚠️' : type === 'success' ? '✅' : '💬');
+                title.textContent = options.title || 'تنبيه';
+                text.innerHTML = (options.text || '').replace(/\n/g, '<br>');
+                cancelBtn.textContent = options.cancelText || 'إلغاء';
+                confirmBtn.textContent = options.confirmText || 'تأكيد';
+
+                if (options.onlyConfirm) {
+                    cancelBtn.style.display = 'none';
+                } else {
+                    cancelBtn.style.display = '';
+                }
+
+                if (type === 'danger') {
+                    header.classList.add('danger');
+                    confirmBtn.classList.add('danger');
+                    headerText.textContent = options.title || '⚠️ تحذير';
+                } else if (type === 'success') {
+                    header.classList.add('success');
+                    confirmBtn.classList.add('success');
+                    headerText.textContent = options.title || '✅ نجاح';
+                } else if (type === 'info') {
+                    header.classList.add('info');
+                    headerText.textContent = options.title || '💬 معلومة';
+                }
+
+                overlay.classList.add('show');
+            });
+        };
+
+        window.closeCustomModal = function(result) {
+            document.getElementById('customModalOverlay').classList.remove('show');
+            if (customModalResolve) {
+                customModalResolve(result);
+                customModalResolve = null;
+            }
+        };
+
+        window.confirmModal = function(title, text, options = {}) {
+            return showCustomModal({
+                title, text, type: options.type || 'danger',
+                confirmText: options.confirmText || 'تأكيد',
+                cancelText: options.cancelText || 'إلغاء',
+                icon: options.icon
+            });
+        };
+
+        window.alertModal = function(title, text, type = 'info') {
+            return showCustomModal({
+                title, text, type,
+                confirmText: 'حسناً',
+                onlyConfirm: true,
+                icon: type === 'success' ? '✅' : type === 'danger' ? '⚠️' : '💬'
+            });
+        };
+
+        // ============================================================
+        // 💡 Info Modal System (شرح الأزرار)
+        // ============================================================
+        const INFO_CONTENT = {
+            upload: {
+                title: '📤 رفع ملف Excel/CSV',
+                icon: '📊',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>بيرفع بيانات الطلاب كلهم دفعة واحدة من ملف Excel أو CSV، ويوزّعهم تلقائياً على الفصول والمراحل في قاعدة البيانات.</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>جهّز ملف Excel فيه <strong>4 أعمدة</strong> على الأقل:
+                                <br>• <span class="highlight">grade</span> أو <span class="highlight">المرحلة</span>
+                                <br>• <span class="highlight">class</span> أو <span class="highlight">الفصل</span>
+                                <br>• <span class="highlight">name</span> أو <span class="highlight">الاسم</span>
+                                <br>• <span class="highlight">gender</span> أو <span class="highlight">النوع</span>
+                            </li>
+                            <li>اضغط على المنطقة الخضراء "اختر ملف"</li>
+                            <li>هيظهرلك <strong>معاينة</strong> للبيانات + إحصائيات</li>
+                            <li>راجع البيانات، لو تمام اضغط <span class="highlight">"تأكيد الرفع"</span></li>
+                            <li>السيستم هيرفع البيانات على دفعات (Batch) — بدون Timeouts</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>♻️ خاصية Upsert (الأهم!)</h4>
+                        <p>لو الطالب <strong>موجود بالفعل</strong> بنفس الاسم + الفصل، السيستم:</p>
+                        <ul>
+                            <li>✅ <strong>مش هيكرره</strong> — هيتعرف عليه من الـ name + class</li>
+                            <li>✅ <strong>هيحدّث بياناته</strong> (المرحلة، النوع، إلخ)</li>
+                            <li>✅ <strong>هيحتفظ بدرجة السلوك والملاحظات القديمة</strong></li>
+                        </ul>
+                        <div class="success-box">
+                            💡 يعني لو رفعت ملف فيه 369 طالب مرة، ورفعته تاني بعد شهر بعد إضافة 5 طلاب، السيستم هيحدّث الـ 369 ويضيف الـ 5 بس — بدون تكرار!
+                        </div>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 الصيغة المدعومة</h4>
+                        <ul>
+                            <li>✅ <strong>.xlsx</strong> (Excel 2007+)</li>
+                            <li>✅ <strong>.xls</strong> (Excel 97-2003)</li>
+                            <li>✅ <strong>.csv</strong> (Comma Separated)</li>
+                        </ul>
+                        <p><strong>المرحلة:</strong> الابتدائي / الإعدادي</p>
+                        <p><strong>النوع:</strong> boy / girl أو ذكر / أنثى</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>⚡ المميزات</h4>
+                        <ul>
+                            <li>✅ Batch Writes — رفع مئات الطلاب بسرعة</li>
+                            <li>✅ Auto-Upsert — لا تكرار</li>
+                            <li>✅ معاينة قبل الرفع</li>
+                            <li>✅ تحديث فوري لصفحة الطالب</li>
+                        </ul>
+                    </div>
+                `
+            },
+            teachers: {
+                title: '👨‍🏫 إدارة المدرسين',
+                icon: '👨‍🏫',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>إدارة كاملة للمدرسين: إضافة مدرس جديد، حذفه كلياً من المنظومة، أو إزالته من فصل معين فقط.</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>➕ إضافة مدرس جديد</h4>
+                        <ol>
+                            <li>اكتب <strong>اسم المدرس</strong></li>
+                            <li>اكتب <strong>المادة / اللغة</strong></li>
+                            <li>اضغط "إضافة المدرس"</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>🗑️ حذف / إزالة مدرس</h4>
+                        <p>عندك <strong>خيارين</strong>:</p>
+                        <ul>
+                            <li><strong>🗑️ حذف كلي:</strong> يشيله من كل الفصول والجداول نهائياً (بـ Batch Writes — سريع جداً)</li>
+                            <li><strong>📤 إزالة من فصل:</strong> يشيله من جدول فصل معين بس (سيبقى في قائمة المدرسين)</li>
+                        </ul>
+                        <div class="warning-box">
+                            ⚠️ الحذف الكلي لا يمكن التراجع عنه!
+                        </div>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>🎯 توزيع الحصص (Auto-Sync)</h4>
+                        <p>لما تختار مدرس + يوم + فصل + حصة:</p>
+                        <ul>
+                            <li>✅ الحصة تظهر في <strong>جدول الفصل</strong></li>
+                            <li>✅ وفي نفس الوقت تظهر في <strong>جدول المدرس</strong></li>
+                        </ul>
+                        <div class="success-box">
+                            💡 مش محتاج تعدّل الجدولين يدوياً — بيتم تلقائياً!
+                        </div>
+                    </div>
+                `
+            },
+            schedule: {
+                title: '📅 إدارة الجداول',
+                icon: '📅',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>عرض الجداول الأسبوعية لكل فصل (9 حصص × 5 أيام).</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>اختر <strong>الفصل</strong> من القائمة</li>
+                            <li>اختر <strong>اليوم</strong> (الأحد → الخميس)</li>
+                            <li>هتشوف 9 خلايا (الحصة 1 → 9)</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>⚠️ ملاحظة مهمة</h4>
+                        <div class="warning-box">
+                            الجدول هنا <strong>للعرض فقط</strong>. لتعديل الحصص، اذهب إلى قسم <strong>"👨‍🏫 المدرسين"</strong> واستخدم "توزيع الحصص".
+                        </div>
+                    </div>
+                `
+            },
+            behavior: {
+                title: '📝 تسجيل سلوك الطالب',
+                icon: '📝',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>تسجيل مخالفة سلوكية لطالب، مع خصم تلقائي من درجة السلوك.</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>ابحث عن <strong>الطالب</strong> بالاسم (حرفين على الأقل)</li>
+                            <li>اختر الطالب من النتائج</li>
+                            <li>اختر <strong>نوع المخالفة</strong> من اللائحة (13 مخالفة)</li>
+                            <li>النسبة هتتعبى تلقائياً حسب المخالفة</li>
+                            <li>اختر <strong>تاريخ الواقعة</strong></li>
+                            <li>اضغط <strong>"تسجيل السلوك"</strong></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📊 أنواع المخالفات</h4>
+                        <ul>
+                            <li><strong>مخالفات خفيفة:</strong> -5% (ثرثرة، تأخر، عدم إحضار كتب...)</li>
+                            <li><strong>مخالفات متوسطة:</strong> -10% (مشاجرة)</li>
+                            <li><strong>مخالفات ثقيلة:</strong> -50% (طالب مشاغب بناءً على تقرير)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>💡 ملاحظات مهمة</h4>
+                        <ul>
+                            <li>✅ الدرجة بتتخصم تلقائياً</li>
+                            <li>✅ الملاحظة تتحفظ بتاريخ في سجل الطالب</li>
+                            <li>✅ صفحة الطالب بتتحدث فوراً</li>
+                            <li>✅ بتظهر في "🔔 التنبيهات"</li>
+                        </ul>
+                    </div>
+                `
+            },
+            alerts: {
+                title: '🔔 التنبيهات',
+                icon: '🔔',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>إرسال تنبيه عام لفصل معين (مع إمكانية إرفاق صورة).</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>اختر <strong>الفصل المستهدف</strong></li>
+                            <li>اكتب <strong>نص التنبيه</strong> (بحد أقصى 150 كلمة)</li>
+                            <li>(اختياري) ارفع <strong>صورة</strong> (بحد أقصى 300KB)</li>
+                            <li>اضغط <strong>"إرسال التنبيه"</strong></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📊 التنبيهات تظهر فين؟</h4>
+                        <ul>
+                            <li>✅ في صفحة الطالب (index.html)</li>
+                            <li>✅ في قسم "🔔 التنبيهات" في لوحة التحكم</li>
+                            <li>✅ في "🔍 بحث/حذف التنبيهات"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>💡 ملاحظة عن حجم الصورة</h4>
+                        <div class="warning-box">
+                            <strong>الحد الأقصى للصورة: 300KB</strong><br>
+                            السبب: صور الـ Base64 بتخلي مستند Firestore كبير، ولازم يفضل أقل من 1MB.
+                        </div>
+                    </div>
+                `
+            },
+            manageSchedules: {
+                title: '🔍 بحث وحذف الجداول',
+                icon: '🔍',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>البحث عن جدول فصل معين وحذفه إما كاملاً أو حذف حصة معينة منه.</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>اكتب <strong>اسم الفصل</strong> (أو اتركه فاضي لعرض الكل)</li>
+                            <li>هتشوف بطاقات الجداول مع كل الحصص</li>
+                            <li>اضغط <span class="highlight">🗑️ حذف الجدول بالكامل</span> لحذف الجدول كله</li>
+                            <li>أو اضغط <span class="highlight">🗑️ حذف</span> بجانب حصة معينة</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>⚠️ تحذيرات</h4>
+                        <div class="warning-box">
+                            حذف الجدول بالكامل <strong>لا يمكن التراجع عنه</strong>. تأكد قبل الحذف!
+                        </div>
+                    </div>
+                `
+            },
+            manageAlerts: {
+                title: '🔍 بحث وحذف التنبيهات',
+                icon: '🔍',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>البحث في التنبيهات (باسم الفصل أو النص) وحذف تنبيه واحد أو كل تنبيهات فصل.</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>اكتب <strong>اسم الفصل</strong> أو <strong>كلمة من التنبيه</strong></li>
+                            <li>هتشوف قائمة التنبيهات المطابقة</li>
+                            <li>اضغط <span class="highlight">🗑️ حذف</span> لمسح تنبيه معين</li>
+                            <li>أو لو البحث باسم فصل → هتلاقي زر <span class="highlight">"حذف الكل"</span></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>💡 نصيحة</h4>
+                        <div class="success-box">
+                            لو حابب تمسح كل تنبيهات فصل معين، اكتب اسم الفصل بالظبط في خانة البحث، وهيظهرلك زر "🗑️ حذف الكل".
+                        </div>
+                    </div>
+                `
+            },
+            remove: {
+                title: '🗑️ إزالة طالب',
+                icon: '🗑️',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>حذف طالب نهائياً من قاعدة البيانات.</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>اكتب <strong>اسم الطالب</strong> (حرفين على الأقل)</li>
+                            <li>اختر الطالب من النتائج</li>
+                            <li>اضغط <strong>"تأكيد الإزالة"</strong></li>
+                            <li>أكد العملية من الـ Modal</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>⚠️ تحذيرات</h4>
+                        <div class="warning-box">
+                            <strong>لا يمكن التراجع عن الحذف!</strong><br>
+                            الطالب هيتشال من:
+                            <br>• قاعدة البيانات (students)
+                            <br>• سجل التنبيهات
+                            <br>• صفحات الطلاب
+                        </div>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>💡 نصيحة</h4>
+                        <p>لو عايز تحدّث بيانات طالب بس، استخدم <strong>"📤 رفع ملف Excel/CSV"</strong> بدل الحذف — السيستم هيحدّث البيانات تلقائياً.</p>
+                    </div>
+                `
+            },
+            wipe: {
+                title: '⚠️ مسح البيانات',
+                icon: '⚠️',
+                content: `
+                    <div class="info-modal-section">
+                        <h4>🎯 الزرار ده بيعمل إيه؟</h4>
+                        <p>مسح جماعي للبيانات (اختياري) من قاعدة البيانات.</p>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>📋 خطوات الاستخدام</h4>
+                        <ol>
+                            <li>اختار <strong>اللي عايز تمسحه</strong> من الـ Checkboxes:
+                                <br>• 👥 الطلاب
+                                <br>• 📅 الجداول
+                                <br>• 👨‍🏫 المدرسين
+                                <br>• 🔔 التنبيهات
+                            </li>
+                            <li>اضغط <strong>"تنفيذ المسح"</strong></li>
+                            <li>أكد العملية مرتين (تأكيد مزدوج للأمان)</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>⚠️ تحذيرات شديدة</h4>
+                        <div class="warning-box">
+                            <strong>العملية نهائية ولا يمكن التراجع عنها!</strong><br>
+                            تأكد إنك عايز تمسح البيانات قبل الضغط.<br>
+                            يُنصح بعمل <strong>backup</strong> قبل المسح.
+                        </div>
+                    </div>
+                    
+                    <div class="info-modal-section">
+                        <h4>💡 نصيحة</h4>
+                        <p>بدل ما تمسح كل الطلاب، استخدم <strong>"📤 رفع ملف Excel/CSV"</strong> — السيستم هيحدّث البيانات الموجودة ويضيف الجديدة بدون ما يمسح أي حاجة.</p>
+                    </div>
+                `
+            }
+        };
+
+        window.showInfoModal = function(key) {
+            const info = INFO_CONTENT[key];
+            if (!info) {
+                console.warn('معلومات غير موجودة للزرار:', key);
+                return;
+            }
+
+            const overlay = document.getElementById('infoModalOverlay');
+            const titleEl = document.getElementById('infoModalTitle');
+            const bodyEl = document.getElementById('infoModalBody');
+
+            titleEl.innerHTML = `${info.icon} ${info.title}`;
+            bodyEl.innerHTML = info.content;
+
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeInfoModal = function() {
+            document.getElementById('infoModalOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        };
+
+        window.closeInfoModalOnOverlay = function(event) {
+            if (event.target.id === 'infoModalOverlay') {
+                closeInfoModal();
             }
         };
 
@@ -2653,7 +3303,7 @@
         };
 
         // ============================================================
-        // 🆕 البحث عن الجداول وحذفها
+        // البحث عن الجداول وحذفها
         // ============================================================
         window.searchSchedules = function(query) {
             const box = document.getElementById('schedulesSearchResults');
@@ -2762,7 +3412,6 @@
             try {
                 await deleteDoc(doc(db, 'schedules', scheduleId));
 
-                // تحديث cache فوراً
                 if (schedulesCache[scheduleId]) {
                     delete schedulesCache[scheduleId];
                 }
@@ -2805,7 +3454,6 @@
                     }
                     await updateDoc(scheduleRef, { weeklySchedule });
 
-                    // تحديث cache فوراً
                     if (schedulesCache[scheduleId]) {
                         schedulesCache[scheduleId].weeklySchedule = weeklySchedule;
                     }
@@ -2826,7 +3474,7 @@
         };
 
         // ============================================================
-        // 🆕 البحث عن التنبيهات وحذفها
+        // البحث عن التنبيهات وحذفها
         // ============================================================
         window.searchAlerts = function(query) {
             const box = document.getElementById('alertsSearchResults');
@@ -2902,13 +3550,11 @@
             try {
                 await deleteDoc(doc(db, 'alerts', alertId));
 
-                // تحديث cache فوراً
                 alertsCache = alertsCache.filter(a => a.id !== alertId);
 
                 showToast('✅ تم حذف التنبيه');
                 await logActivity('delete', '🗑️ حذف تنبيه', `تم حذف تنبيه رقم ${alertId}`, { alertId });
 
-                // تحديث العرض
                 const activeTab = document.querySelector('.form-section.active-section');
                 if (activeTab && activeTab.id === 'manageAlertsTab') {
                     searchAlerts(document.getElementById('alertSearchInput').value);
@@ -2942,7 +3588,6 @@
                 classAlerts.forEach(a => batch.delete(doc(db, 'alerts', a.id)));
                 await batch.commit();
 
-                // تحديث cache فوراً
                 alertsCache = alertsCache.filter(a => a.className !== className);
 
                 showToast(`✅ تم حذف ${classAlerts.length} تنبيه`);
@@ -2974,6 +3619,12 @@
             const errorMsg = document.getElementById('errorMsg');
 
             if (user && pass === ADMIN_PASSWORD) {
+                if (firebaseInitError) {
+                    errorMsg.style.display = 'block';
+                    errorMsg.textContent = '❌ لا يمكن الدخول — فشل الاتصال بـ Firebase';
+                    return;
+                }
+
                 currentUser = user;
                 document.getElementById('loginBox').classList.add('hidden');
                 document.getElementById('adminBox').classList.remove('hidden');
@@ -3177,6 +3828,9 @@
             showToast('تم إلغاء الرفع', 'info');
         };
 
+        // ============================================================
+        // 📤 رفع البيانات إلى Firebase (Batch + Upsert + Cache Update)
+        // ============================================================
         window.confirmUploadToFirebase = async function() {
             if (excelParsedData.length === 0) {
                 showToast('⚠️ مفيش بيانات للرفع', 'error');
@@ -3189,49 +3843,152 @@
                 `📚 فصول: ${excelStats.classes}\n` +
                 `🏫 مراحل: ${excelStats.grades}\n` +
                 `👦 أولاد: ${excelStats.boys}\n` +
-                `👧 بنات: ${excelStats.girls}`,
+                `👧 بنات: ${excelStats.girls}\n\n` +
+                `♻️ ملاحظة: لو فيه طالب موجود بنفس الاسم+الفصل، هيتحدّث بدل ما يتكرر`,
                 { icon: '📤', confirmText: 'نعم، ارفع', type: 'success' }
             );
             if (!ok) return;
 
             try {
-                showToast('⏳ جاري رفع البيانات...', 'info');
+                showToast('⏳ جاري معالجة البيانات...', 'info');
 
-                let added = 0;
-                let skipped = 0;
-                const newlyAddedStudents = [];
-
-                for (const student of excelParsedData) {
-                    const studentsRef = collection(db, 'students');
-                    const q = query(studentsRef,
-                        where('name', '==', student.name),
-                        where('class', '==', student.class)
-                    );
-                    const existing = await getDocs(q);
-                    if (!existing.empty) {
-                        skipped++;
-                        continue;
+                // ============================================================
+                // 1️⃣ بناء خريطة للطلاب الموجودين (name+class → id)
+                // ============================================================
+                const existingStudentsMap = new Map();
+                studentsCache.forEach(s => {
+                    if (s.name && s.class) {
+                        const key = `${s.name.trim()}_${s.class.trim()}`;
+                        existingStudentsMap.set(key, s.id);
                     }
-
-                    const docRef = await addDoc(studentsRef, {
-                        ...student,
-                        createdAt: new Date().toISOString(),
-                        updatedAt: new Date().toISOString()
-                    });
-                    added++;
-                    newlyAddedStudents.push({ id: docRef.id, ...student });
-                }
-
-                // ⚡ تحديث الـ cache فوراً للبحث اللحظي
-                newlyAddedStudents.forEach(newStudent => {
-                    const exists = studentsCache.some(s => s.id === newStudent.id);
-                    if (!exists) studentsCache.push(newStudent);
                 });
 
+                // ============================================================
+                // 2️⃣ فصل البيانات: تحديثات (upsert) vs إضافات جديدة
+                // ============================================================
+                const updates = [];
+                const additions = [];
+                const seenKeys = new Set();
+
+                for (const student of excelParsedData) {
+                    const key = `${student.name.trim()}_${student.class.trim()}`;
+
+                    if (seenKeys.has(key)) continue;
+                    seenKeys.add(key);
+
+                    if (existingStudentsMap.has(key)) {
+                        const existingId = existingStudentsMap.get(key);
+                        const existingStudent = studentsCache.find(s => s.id === existingId);
+                        updates.push({
+                            id: existingId,
+                            data: {
+                                ...student,
+                                behaviorScore: existingStudent?.behaviorScore ?? student.behaviorScore,
+                                behaviorNotes: existingStudent?.behaviorNotes ?? student.behaviorNotes,
+                                attendance: existingStudent?.attendance ?? student.attendance,
+                                createdAt: existingStudent?.createdAt ?? new Date().toISOString(),
+                                updatedAt: new Date().toISOString()
+                            }
+                        });
+                    } else {
+                        additions.push({
+                            data: {
+                                ...student,
+                                createdAt: new Date().toISOString(),
+                                updatedAt: new Date().toISOString()
+                            }
+                        });
+                    }
+                }
+
+                console.log(`📊 التحليل: ${updates.length} تحديث، ${additions.length} إضافة جديدة`);
+
+                // ============================================================
+                // 3️⃣ تنفيذ التحديثات والإضافات على دفعات (Batch Writes)
+                // ============================================================
+                let totalUpdated = 0;
+                let totalAdded = 0;
+
+                // --- 3a: التحديثات (Upsert) ---
+                if (updates.length > 0) {
+                    for (let i = 0; i < updates.length; i += BATCH_SIZE) {
+                        const batch = writeBatch(db);
+                        const chunk = updates.slice(i, i + BATCH_SIZE);
+
+                        chunk.forEach(u => {
+                            const ref = doc(db, 'students', u.id);
+                            batch.set(ref, u.data, { merge: true });
+                        });
+
+                        await batch.commit();
+                        totalUpdated += chunk.length;
+                        console.log(`✅ تم تحديث ${chunk.length} طالب (${totalUpdated}/${updates.length})`);
+                        showToast(`⏳ تحديث ${totalUpdated}/${updates.length}...`, 'info');
+                    }
+                }
+
+                // --- 3b: الإضافات الجديدة (مع حفظ IDs) ---
+                const newlyAddedStudents = [];
+
+                if (additions.length > 0) {
+                    for (let i = 0; i < additions.length; i += BATCH_SIZE) {
+                        const batch = writeBatch(db);
+                        const chunk = additions.slice(i, i + BATCH_SIZE);
+                        const chunkRefs = [];
+
+                        chunk.forEach(a => {
+                            const ref = doc(collection(db, 'students'));
+                            batch.set(ref, a.data);
+                            chunkRefs.push({ ref, data: a.data });
+                        });
+
+                        await batch.commit();
+                        totalAdded += chunk.length;
+
+                        // حفظ المراجع للـ cache
+                        chunkRefs.forEach(item => {
+                            newlyAddedStudents.push({
+                                id: item.ref.id,
+                                ...item.data
+                            });
+                        });
+
+                        console.log(`✅ تم إضافة ${chunk.length} طالب جديد (${totalAdded}/${additions.length})`);
+                        showToast(`⏳ إضافة ${totalAdded}/${additions.length}...`, 'info');
+                    }
+                }
+
+                // ============================================================
+                // 4️⃣ تحديث الـ Cache المحلي فوراً (Cache Update - جديد!)
+                // ============================================================
+
+                // 4a: تحديث الطلاب الموجودين في cache
+                updates.forEach(u => {
+                    const idx = studentsCache.findIndex(s => s.id === u.id);
+                    if (idx !== -1) {
+                        studentsCache[idx] = { id: u.id, ...u.data };
+                    }
+                });
+
+                // 4b: إضافة الطلاب الجداد للـ cache فوراً ⚡
+                newlyAddedStudents.forEach(newStudent => {
+                    const exists = studentsCache.some(s => s.id === newStudent.id);
+                    if (!exists) {
+                        studentsCache.push(newStudent);
+                    }
+                });
+
+                console.log(`⚡ تم تحديث Cache: ${totalUpdated} تعديل + ${totalAdded} إضافة جديدة`);
+
+                // تحديث القوائم المنسدلة
                 fillClassSelects();
 
-                // إنشاء مستندات الفصول (schedules) الفارغة
+                // ============================================================
+                // 5️⃣ إنشاء مستندات الفصول (schedules) الفارغة
+                // ============================================================
                 const uniqueClasses = new Set(excelParsedData.map(s => s.class));
+                let newClassesCreated = 0;
+
                 for (const cls of uniqueClasses) {
                     const classId = classIdFromName(cls);
                     const classRef = doc(db, 'schedules', classId);
@@ -3242,28 +3999,53 @@
                             weeklySchedule: {},
                             createdAt: new Date().toISOString()
                         });
+                        newClassesCreated++;
                     }
                 }
 
-                await logActivity('seed', '📤 رفع ملف Excel',
-                    `تم رفع ${added} طالب — تم تجاهل ${skipped} طالب موجود — ${uniqueClasses.size} فصل`,
-                    { added, skipped, classes: uniqueClasses.size }
+                // ============================================================
+                // 6️⃣ تسجيل النشاط
+                // ============================================================
+                await logActivity('seed', '📤 رفع ملف Excel (Batch + Upsert)',
+                    `تحديث ${totalUpdated} طالب — إضافة ${totalAdded} طالب جديد — ${uniqueClasses.size} فصل`,
+                    {
+                        updated: totalUpdated,
+                        added: totalAdded,
+                        classes: uniqueClasses.size,
+                        newClasses: newClassesCreated
+                    }
                 );
 
-                showToast(`✅ تم رفع ${added} طالب بنجاح`);
+                // ============================================================
+                // 7️⃣ رسالة النجاح النهائية
+                // ============================================================
+                showToast(`✅ تم الرفع: ${totalUpdated} تحديث + ${totalAdded} جديد`);
+
                 await alertModal(
-                    'تم الرفع بنجاح',
-                    `✅ تم رفع ${added} طالب\n` +
-                    `ℹ️ تم تجاهل ${skipped} طالب (موجودين بالفعل)\n` +
-                    `📚 إجمالي الفصول: ${uniqueClasses.size}\n\n` +
-                    `⚡ الطلاب متاحين الآن في البحث الشامل فوراً`,
+                    '✅ تم الرفع بنجاح',
+                    `📊 *ملخص العملية:*\n\n` +
+                    `♻️ *تم تحديث:* ${totalUpdated} طالب موجود\n` +
+                    `✨ *تم إضافة:* ${totalAdded} طالب جديد\n` +
+                    `📚 *إجمالي الفصول:* ${uniqueClasses.size}\n` +
+                    `🆕 *فصول جديدة:* ${newClassesCreated}\n\n` +
+                    `⚡ *الطلاب متاحين الآن في البحث الشامل فوراً*`,
                     'success'
                 );
 
                 cancelExcelUpload();
+
             } catch (error) {
-                console.error(error);
-                showToast('❌ حدث خطأ أثناء الرفع', 'error');
+                console.error('❌ خطأ في الرفع:', error);
+                showToast('❌ حدث خطأ أثناء الرفع: ' + error.message, 'error');
+                await alertModal(
+                    '❌ حدث خطأ',
+                    `حدث خطأ أثناء الرفع:\n\n${error.message}\n\n` +
+                    `💡 تأكد من:\n` +
+                    `• اتصال الإنترنت\n` +
+                    `• Firestore Rules مسموحة بالكتابة\n` +
+                    `• حجم الملف معقول (أقل من 500 طالب)`,
+                    'danger'
+                );
             }
         };
 
@@ -3331,10 +4113,18 @@
 
                 async function wipeCollection(collectionName) {
                     const snapshot = await getDocs(collection(db, collectionName));
-                    const batch = writeBatch(db);
                     let count = 0;
-                    snapshot.forEach(d => { batch.delete(d.ref); count++; });
-                    if (count > 0) await batch.commit();
+
+                    const docs = [];
+                    snapshot.forEach(d => docs.push(d.ref));
+
+                    for (let i = 0; i < docs.length; i += BATCH_SIZE) {
+                        const batch = writeBatch(db);
+                        const chunk = docs.slice(i, i + BATCH_SIZE);
+                        chunk.forEach(ref => batch.delete(ref));
+                        await batch.commit();
+                        count += chunk.length;
+                    }
                     return count;
                 }
 
@@ -3359,7 +4149,6 @@
                     alertsCache = [];
                 }
 
-                // تحديث القوائم المنسدلة فوراً
                 fillClassSelects();
                 fillTeachersSelect();
                 renderTeachersList();
@@ -3402,7 +4191,6 @@
                     createdAt: new Date().toISOString()
                 });
 
-                // تحديث cache فوراً
                 teachersCache.push({ id: docRef.id, name, subject, assignedClasses: [] });
                 renderTeachersList();
                 fillTeachersSelect();
@@ -3433,7 +4221,6 @@
             try {
                 await deleteDoc(doc(db, 'teachers', teacherId));
 
-                // تحديث cache فوراً
                 teachersCache = teachersCache.filter(t => t.id !== teacherId);
                 renderTeachersList();
                 fillTeachersSelect();
@@ -3446,6 +4233,9 @@
             }
         };
 
+        // ============================================================
+        // 🚀 حذف/إزالة مدرس (بـ Batch Writes - أسرع 5x)
+        // ============================================================
         window.confirmDeleteTeacher = async function() {
             const teacherId = document.getElementById('deleteTeacherSelect').value;
             const type = document.getElementById('deleteTeacherType').value;
@@ -3462,6 +4252,9 @@
             if (!teacher) { showToast('❌ المدرس غير موجود', 'error'); return; }
 
             if (type === 'full') {
+                // ============================================================
+                // 🗑️ حذف كلي (بـ Batch Writes - أسرع)
+                // ============================================================
                 const ok = await confirmModal(
                     '🗑️ حذف كلي للمدرس',
                     `هل أنت متأكد من حذف المدرس "${teacher.name}" نهائياً من المنظومة بالكامل؟\n\n⚠️ سيتم إزالته من كل الفصول وجداوله.`,
@@ -3470,9 +4263,15 @@
                 if (!ok) return;
 
                 try {
+                    showToast('⏳ جاري الحذف...', 'info');
+
+                    // 1️⃣ حذف المدرس من collection teachers
                     await deleteDoc(doc(db, 'teachers', teacherId));
 
+                    // 2️⃣ تجميع الجداول اللي فيها المدرس + تعديلها
                     let removedFromCount = 0;
+                    const schedulesToUpdate = [];
+
                     for (const classId in schedulesCache) {
                         const schedule = schedulesCache[classId];
                         const weeklySchedule = JSON.parse(JSON.stringify(schedule.weeklySchedule || {}));
@@ -3490,23 +4289,52 @@
                         }
 
                         if (changed) {
-                            await updateDoc(doc(db, 'schedules', classId), { weeklySchedule });
-                            schedulesCache[classId].weeklySchedule = weeklySchedule;
+                            schedulesToUpdate.push({
+                                classId,
+                                weeklySchedule
+                            });
                         }
                     }
 
-                    // تحديث cache
+                    // 3️⃣ تنفيذ كل التعديلات في Batch واحد (أسرع بكتير) 🚀
+                    if (schedulesToUpdate.length > 0) {
+                        for (let i = 0; i < schedulesToUpdate.length; i += BATCH_SIZE) {
+                            const batch = writeBatch(db);
+                            const chunk = schedulesToUpdate.slice(i, i + BATCH_SIZE);
+
+                            chunk.forEach(item => {
+                                batch.update(doc(db, 'schedules', item.classId), {
+                                    weeklySchedule: item.weeklySchedule
+                                });
+                            });
+
+                            await batch.commit();
+
+                            // تحديث الـ cache المحلي
+                            chunk.forEach(item => {
+                                if (schedulesCache[item.classId]) {
+                                    schedulesCache[item.classId].weeklySchedule = item.weeklySchedule;
+                                }
+                            });
+                        }
+                    }
+
+                    // 4️⃣ تحديث الـ cache
                     teachersCache = teachersCache.filter(t => t.id !== teacherId);
                     renderTeachersList();
                     fillTeachersSelect();
 
+                    // 5️⃣ Log Activity
                     await logActivity('delete', '🗑️ حذف مدرس نهائياً',
                         `المدرس: ${teacher.name} — تم إزالته من ${removedFromCount} حصة`,
                         { teacherName: teacher.name, removedSlots: removedFromCount }
                     );
+
                     showToast(`✅ تم حذف المدرس نهائياً`);
                     await alertModal('تم الحذف الكلي',
-                        `تم حذف المدرس "${teacher.name}" نهائياً من المنظومة.\nتم إزالته من ${removedFromCount} حصة.`,
+                        `تم حذف المدرس "${teacher.name}" نهائياً من المنظومة.\n` +
+                        `تم إزالته من ${removedFromCount} حصة.\n` +
+                        `✅ استخدم Batch Writes — سريع جداً!`,
                         'success'
                     );
 
@@ -3517,6 +4345,9 @@
                     showToast('❌ حدث خطأ', 'error');
                 }
             } else {
+                // ============================================================
+                // 📤 إزالة من فصل معين
+                // ============================================================
                 const ok = await confirmModal(
                     '📤 إزالة من فصل',
                     `هل تريد إزالة المدرس "${teacher.name}" من جدول الفصل "${className}" فقط؟\n\n(سيبقى المدرس في قائمة المدرسين)`,
@@ -3555,7 +4386,6 @@
 
                     await updateDoc(classRef, { weeklySchedule });
 
-                    // تحديث cache فوراً
                     if (schedulesCache[classId]) {
                         schedulesCache[classId].weeklySchedule = weeklySchedule;
                     }
@@ -3675,14 +4505,12 @@
                     });
                 }
 
-                // تحديث cache فوراً
                 schedulesCache[classId] = {
                     id: classId,
                     className,
                     weeklySchedule
                 };
 
-                // تحديث assignedClasses للمدرس
                 const teacherRef = doc(db, 'teachers', teacher.id);
                 const teacherSnap = await getDoc(teacherRef);
                 if (teacherSnap.exists()) {
@@ -3839,11 +4667,14 @@
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    if (document.getElementById('logModalOverlay').classList.contains('show')) {
+                    if (document.getElementById('logModalOverlay')?.classList.contains('show')) {
                         closeActivityLog();
                     }
-                    if (document.getElementById('customModalOverlay').classList.contains('show')) {
+                    if (document.getElementById('customModalOverlay')?.classList.contains('show')) {
                         closeCustomModal(false);
+                    }
+                    if (document.getElementById('infoModalOverlay')?.classList.contains('show')) {
+                        closeInfoModal();
                     }
                 }
             });
@@ -3883,7 +4714,6 @@
                     updatedAt: new Date().toISOString()
                 });
 
-                // تحديث cache فوراً
                 const cacheIdx = studentsCache.findIndex(s => s.id === selectedBehaviorStudent.id);
                 if (cacheIdx !== -1) {
                     studentsCache[cacheIdx].behaviorScore = newScore;
@@ -3932,7 +4762,6 @@
             try {
                 await deleteDoc(doc(db, 'students', selectedStudentForRemoval.id));
 
-                // تحديث cache فوراً
                 studentsCache = studentsCache.filter(s => s.id !== selectedStudentForRemoval.id);
 
                 await logActivity('delete', '🗑️ حذف طالب',
@@ -3960,14 +4789,20 @@
             document.getElementById('alertCounter').textContent = words;
         };
 
+        // ============================================================
+        // 🖼️ معاينة صورة التنبيه (300KB للأمان - تم التعديل)
+        // ============================================================
         window.previewAlertImage = function(event) {
             const file = event.target.files[0];
             if (!file) { alertImageBase64 = null; return; }
-            if (file.size > 500 * 1024) {
-                showToast('⚠️ حجم الصورة كبير — الحد الأقصى 500KB', 'error');
+
+            // ✅ تم التعديل: 300KB بدل 500KB للأمان
+            if (file.size > 300 * 1024) {
+                showToast('⚠️ حجم الصورة كبير — الحد الأقصى 300KB', 'error');
                 event.target.value = '';
                 return;
             }
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 alertImageBase64 = e.target.result;
@@ -4001,7 +4836,6 @@
                     timestamp: Date.now()
                 });
 
-                // تحديث cache فوراً
                 alertsCache.unshift({
                     id: docRef.id,
                     className,
@@ -4064,6 +4898,7 @@
         // ============================================================
         function fillPercentSelect() {
             const select = document.getElementById('percentSelect');
+            if (!select) return;
             select.innerHTML = '<option value="">اختر النسبة</option>';
             for (let i = 5; i <= 100; i += 5) {
                 const opt = document.createElement('option');
@@ -4075,6 +4910,7 @@
 
         function fillBehaviorTypeSelect() {
             const select = document.getElementById('behaviorType');
+            if (!select) return;
             select.innerHTML = '<option value="">اختر السلوك أو المخالفة</option>';
             VIOLATIONS_LIST.forEach(v => {
                 const opt = document.createElement('option');
@@ -4135,9 +4971,18 @@
         // الاستماع الفوري للبيانات
         // ============================================================
         function listenToDatabase() {
-            console.log('🔌 بدء الاستماع...');
+            if (!db) {
+                console.error('❌ Firestore غير مهيأ');
+                isStudentsLoaded = true;
+                isTeachersLoaded = true;
+                isSchedulesLoaded = true;
+                updateConnectionStatus();
+                return;
+            }
 
-            // الطلاب
+            console.log('🔌 بدء الاستماع...');
+            console.log('📦 Project:', firebaseConfig.projectId);
+
             onSnapshot(collection(db, 'students'), (snapshot) => {
                 studentsCache = [];
                 snapshot.forEach(docSnap => {
@@ -4148,12 +4993,11 @@
                 fillClassSelects();
                 updateConnectionStatus();
             }, (error) => {
-                console.error('❌ خطأ في الطلاب:', error);
+                console.error('❌ خطأ في الطلاب:', error.code, error.message);
                 isStudentsLoaded = true;
                 updateConnectionStatus();
             });
 
-            // المدرسين
             onSnapshot(collection(db, 'teachers'), (snapshot) => {
                 teachersCache = [];
                 snapshot.forEach(docSnap => {
@@ -4165,12 +5009,11 @@
                 fillTeachersSelect();
                 updateConnectionStatus();
             }, (error) => {
-                console.error('❌ خطأ في المدرسين:', error);
+                console.error('❌ خطأ في المدرسين:', error.code, error.message);
                 isTeachersLoaded = true;
                 updateConnectionStatus();
             });
 
-            // الجداول
             onSnapshot(collection(db, 'schedules'), (snapshot) => {
                 schedulesCache = {};
                 snapshot.forEach(docSnap => {
@@ -4188,16 +5031,15 @@
                 if (assignSelect && assignSelect.value) {
                     loadTeacherSchedule();
                 }
-                if (document.getElementById('manageSchedulesTab').classList.contains('active-section')) {
+                if (document.getElementById('manageSchedulesTab')?.classList.contains('active-section')) {
                     searchSchedules(document.getElementById('scheduleSearchInput').value);
                 }
             }, (error) => {
-                console.error('❌ خطأ في الجداول:', error);
+                console.error('❌ خطأ في الجداول:', error.code, error.message);
                 isSchedulesLoaded = true;
                 updateConnectionStatus();
             });
 
-            // التنبيهات
             onSnapshot(collection(db, 'alerts'), (snapshot) => {
                 alertsCache = [];
                 snapshot.forEach(docSnap => {
@@ -4208,10 +5050,10 @@
                 if (alertSelect && alertSelect.value) {
                     loadAlertsForClass();
                 }
-                if (document.getElementById('manageAlertsTab').classList.contains('active-section')) {
+                if (document.getElementById('manageAlertsTab')?.classList.contains('active-section')) {
                     searchAlerts(document.getElementById('alertSearchInput').value);
                 }
-            }, (error) => console.error('❌ خطأ في التنبيهات:', error));
+            }, (error) => console.error('❌ خطأ في التنبيهات:', error.code, error.message));
         }
 
         // ============================================================
@@ -4219,9 +5061,11 @@
         // ============================================================
         fillPercentSelect();
         fillBehaviorTypeSelect();
-        document.getElementById('behaviorDate').valueAsDate = new Date();
+        const behaviorDateInput = document.getElementById('behaviorDate');
+        if (behaviorDateInput) behaviorDateInput.valueAsDate = new Date();
 
-        document.getElementById('alertClass').addEventListener('change', loadAlertsForClass);
+        const alertClassSelect = document.getElementById('alertClass');
+        if (alertClassSelect) alertClassSelect.addEventListener('change', loadAlertsForClass);
 
         listenToDatabase();
         updateConnectionStatus();

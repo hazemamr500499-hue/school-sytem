@@ -1257,12 +1257,12 @@
         // ✅ إعدادات Firebase - مشروعك الفعلي
         // ============================================================
         const firebaseConfig = {
-            apiKey: "AIzaSyC-SKxU2v29YW7ddjdoPEVfqVfeFapnbsQ",
+            apiKey: "AIzaSyC-SkxU2v29W7ddjd0PEVfqVfeFapnbsQ",
             authDomain: "mohamedragabschool-8e9b6.firebaseapp.com",
             projectId: "mohamedragabschool-8e9b6",
             storageBucket: "mohamedragabschool-8e9b6.firebasestorage.app",
             messagingSenderId: "882767624230",
-            appId: "1:882767624230:web:90c6b11bd96801a28a4ae7"
+            appId: "1:882767624230:web:9b6cb11bd96801a28a4ea7"
         };
 
         const appFirebase = initializeApp(firebaseConfig);
@@ -2331,6 +2331,7 @@
         // ============================================================
         function listenToDatabase() {
             console.log('🔌 بدء الاستماع لقاعدة البيانات...');
+            console.log('📦 المشروع:', firebaseConfig.projectId);
 
             // 1️⃣ الطلاب (students)
             onSnapshot(collection(db, 'students'), (snapshot) => {
@@ -2342,10 +2343,11 @@
                 dataLoadError = null;
                 console.log(`✅ تم تحميل ${studentsCache.length} طالب`);
 
-                // إعادة رسم الشاشة الحالية تلقائياً
                 refreshCurrentView();
             }, (error) => {
                 console.error('❌ خطأ في تحميل الطلاب:', error);
+                console.error('❌ رمز الخطأ:', error.code);
+                console.error('❌ رسالة الخطأ:', error.message);
                 dataLoadError = error;
                 isDataLoaded = true;
                 refreshCurrentView();
@@ -2359,7 +2361,6 @@
                 });
                 console.log(`✅ تم تحميل ${Object.keys(schedulesCache).length} جدول`);
 
-                // تحديث الجدول لو الشاشة الحالية "schedule"
                 if (currentView === 'schedule' && currentClass) {
                     renderScheduleView(currentClass);
                 }
@@ -2375,7 +2376,6 @@
                 });
                 console.log(`✅ تم تحميل ${alertsCache.length} تنبيه`);
 
-                // تحديث التنبيهات لو الشاشة الحالية "alerts"
                 if (currentView === 'alerts' && currentClass) {
                     renderAlertsView(currentClass);
                 }
