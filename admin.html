@@ -7,13 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>لوحة تحكم المدرسين - مدرسة محمد رجب</title>
 
-    <!-- ============================================================
-         الجزء الثاني: CSS بالكامل
-         ============================================================ -->
     <style>
-        /* ============================================================
-           إعدادات عامة
-           ============================================================ */
         * {
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, 'Cairo', sans-serif;
@@ -45,9 +39,6 @@
             user-select: text;
         }
 
-        /* ============================================================
-           الهيدر
-           ============================================================ */
         header {
             padding: 22px 20px;
             border-radius: 22px;
@@ -72,9 +63,6 @@
         header h2 { font-size: 20px; position: relative; }
         header p  { font-size: 13px; opacity: 0.95; position: relative; }
 
-        /* ============================================================
-           شاشة تسجيل الدخول
-           ============================================================ */
         .login-card {
             background: white;
             max-width: 420px;
@@ -88,17 +76,11 @@
         }
         .login-card header { margin-bottom: 20px; }
 
-        /* ============================================================
-           لوحة التحكم
-           ============================================================ */
         .admin-panel {
             max-width: 950px;
             margin: 0 auto;
         }
 
-        /* ============================================================
-           حالة الاتصال
-           ============================================================ */
         .connection-status {
             padding: 10px 15px;
             border-radius: 14px;
@@ -122,9 +104,6 @@
             color: #92400e;
         }
 
-        /* ============================================================
-           شريط البحث الشامل
-           ============================================================ */
         .global-search-section {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -335,9 +314,6 @@
             padding: 10px;
         }
 
-        /* ============================================================
-           القائمة الرئيسية
-           ============================================================ */
         .main-menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -395,7 +371,6 @@
             background: linear-gradient(135deg, #be123c 0%, #e11d48 50%, #f43f5e 100%);
         }
 
-        /* أيقونة المعلومات */
         .info-icon-btn {
             background: linear-gradient(135deg, #f59e0b, #fbbf24);
             color: white;
@@ -420,9 +395,6 @@
         }
         .info-icon-btn:active { transform: translateY(-1px); }
 
-        /* ============================================================
-           الأقسام (Tabs)
-           ============================================================ */
         .form-section {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -451,9 +423,6 @@
             font-size: 18px;
         }
 
-        /* ============================================================
-           مجموعات النماذج
-           ============================================================ */
         .form-group {
             display: flex;
             flex-direction: column;
@@ -485,9 +454,6 @@
         }
         textarea { resize: vertical; min-height: 100px; }
 
-        /* ============================================================
-           الأزرار
-           ============================================================ */
         .submit-btn {
             padding: 14px;
             border: none;
@@ -520,9 +486,6 @@
             background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
         }
 
-        /* ============================================================
-           عناصر مساعدة
-           ============================================================ */
         .hidden { display: none !important; }
         .error-msg {
             color: #e74c3c;
@@ -532,9 +495,6 @@
             font-weight: bold;
         }
 
-        /* ============================================================
-           Toast
-           ============================================================ */
         .toast {
             position: fixed;
             top: 20px;
@@ -559,9 +519,6 @@
         .toast.error { background: linear-gradient(135deg, #be123c, #e11d48); }
         .toast.info  { background: linear-gradient(135deg, #2563eb, #3b82f6); }
 
-        /* ============================================================
-           Custom Modal
-           ============================================================ */
         .custom-modal-overlay {
             position: fixed;
             inset: 0;
@@ -688,9 +645,6 @@
         .custom-modal-btn:hover { transform: translateY(-2px); }
         .custom-modal-btn:active { transform: translateY(0); }
 
-        /* ============================================================
-           Info Modal
-           ============================================================ */
         .info-modal-overlay {
             position: fixed;
             inset: 0;
@@ -836,9 +790,6 @@
             border-right: 3px solid #f39c12;
         }
 
-        /* ============================================================
-           البحث الداخلي
-           ============================================================ */
         .search-box { position: relative; margin-top: 8px; }
         .search-box input { padding-right: 40px; }
         .search-box::after {
@@ -892,9 +843,6 @@
             animation: fadeIn 0.3s ease;
         }
 
-        /* ============================================================
-           المدرسين
-           ============================================================ */
         .teachers-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -947,9 +895,6 @@
         }
         .btn-del-teacher:hover { background: #fecaca; }
 
-        /* ============================================================
-           الجدول الجديد (متوافق مع الشكل المدرسي الورقي) — Unified & Responsive
-           ============================================================ */
         .days-tabs {
             display: flex;
             gap: 8px;
@@ -980,106 +925,111 @@
             box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
         }
 
-        .schedule-table-wrapper,
-        .table-responsive {
+        /* ============================================================
+           الجدول الجديد (الشكل المدرسي الأنيق)
+           ============================================================ */
+        .schedule-table-wrapper {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             margin-top: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             background: white;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
         }
 
-        .schedule-table,
-        .excel-table,
-        .log-table,
-        .unified-table {
+        .schedule-table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
             font-size: 13px;
             table-layout: fixed;
-            min-width: 720px;
+            min-width: 820px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .schedule-table th,
-        .schedule-table td,
-        .excel-table th,
-        .excel-table td {
-            border: 1px solid #cbd5e1;
+        .schedule-table th {
+            background: #f8fafc;
+            color: #334155;
+            font-weight: 700;
+            font-size: 13px;
+            height: 48px;
+            border: 1px solid #e2e8f0;
+            padding: 6px 4px;
+            white-space: nowrap;
+        }
+
+        .schedule-table th.day-header {
+            background: #eef2ff;
+            color: #1e3a8a;
+            width: 90px;
+            font-size: 14px;
+            border-left: 2px solid #cbd5e1;
+        }
+
+        .schedule-table td {
+            border: 1px solid #e2e8f0;
             padding: 8px 4px;
             vertical-align: middle;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
 
-        .schedule-table th,
-        .excel-table th {
-            background: linear-gradient(135deg, #f8fafc, #eef4fb);
-            color: #1e3a8a;
-            font-weight: bold;
-            font-size: 13px;
-            height: 42px;
-            white-space: nowrap;
-        }
-
-        .schedule-table th.day-header {
-            background: linear-gradient(135deg, #3a7bd5, #2563eb);
-            color: white;
-            width: 80px;
-            font-size: 14px;
-        }
-
         .schedule-table td.day-cell {
-            background: #f1f5f9;
+            background: #f8fafc;
             font-weight: bold;
             color: #1e3a8a;
             font-size: 14px;
-            width: 80px;
+            width: 90px;
+            border-left: 2px solid #cbd5e1;
         }
 
         .schedule-table td.lesson-cell {
             background: #ffffff;
             transition: background 0.2s;
-            height: 72px;
-            min-width: 70px;
+            height: 78px;
+            min-width: 75px;
         }
 
         .schedule-table td.lesson-cell:hover { background: #f8fafc; }
-        .schedule-table td.lesson-cell.filled { background: #f0fdf4; }
-        .schedule-table td.lesson-cell.double { background: #fef3c7; }
+        .schedule-table td.lesson-cell.filled { background: #f8fafc; }
+        .schedule-table td.lesson-cell.double { background: #f0fdf4; }
 
         .lesson-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             height: 100%;
-            padding: 2px;
+            padding: 4px;
         }
 
         .lesson-subject {
-            font-weight: bold;
+            font-weight: 700;
             color: #1e293b;
-            font-size: 13px;
+            font-size: 13.5px;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             flex-wrap: wrap;
             justify-content: center;
             line-height: 1.3;
         }
 
         .lesson-teacher {
-            font-size: 11px;
+            font-size: 11.5px;
             color: #64748b;
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
             flex-wrap: wrap;
             justify-content: center;
+            font-weight: 500;
         }
 
         .lesson-teacher i {
@@ -1087,9 +1037,6 @@
             font-size: 12px;
         }
 
-        /* ============================================================
-           التنبيهات
-           ============================================================ */
         .alerts-list {
             display: flex;
             flex-direction: column;
@@ -1154,9 +1101,6 @@
             box-shadow: 0 4px 12px rgba(190, 18, 60, 0.3);
         }
 
-        /* ============================================================
-           بحث وحذف التنبيهات
-           ============================================================ */
         .alerts-search-results {
             background: #f8fafc;
             border: 1.5px solid #e2e8f0;
@@ -1220,9 +1164,6 @@
             box-shadow: 0 4px 12px rgba(190, 18, 60, 0.3);
         }
 
-        /* ============================================================
-           بحث وحذف الجداول
-           ============================================================ */
         .schedules-search-results {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1339,9 +1280,6 @@
             transform: translateY(-1px);
         }
 
-        /* ============================================================
-           Spinner
-           ============================================================ */
         .spinner {
             width: 36px;
             height: 36px;
@@ -1367,9 +1305,6 @@
             transform: translateX(-3px);
         }
 
-        /* ============================================================
-           زر سجل النشاطات
-           ============================================================ */
         .activity-log-btn {
             position: fixed;
             bottom: 20px;
@@ -1418,9 +1353,6 @@
         }
         .activity-log-btn::after:empty { display: none; }
 
-        /* ============================================================
-           Modal سجل النشاطات
-           ============================================================ */
         .log-modal-overlay {
             position: fixed;
             inset: 0;
@@ -1579,9 +1511,6 @@
         }
         .log-detail-col { max-width: 350px; word-break: break-word; }
 
-        /* ============================================================
-           منطقة رفع Excel
-           ============================================================ */
         .excel-upload-area {
             background: linear-gradient(135deg, #f0fdf4, #dcfce7);
             border: 2px dashed #22c55e;
@@ -1632,9 +1561,6 @@
             color: #1e3a8a;
         }
 
-        /* ============================================================
-           معاينة Excel
-           ============================================================ */
         .excel-preview-box {
             background: #f8fafc;
             border: 1.5px solid #e2e8f0;
@@ -1704,9 +1630,6 @@
         .excel-table tr:last-child td { border-bottom: none; }
         .excel-table tr:hover td { background: #f8fafc; }
 
-        /* ============================================================
-           خيارات المسح
-           ============================================================ */
         .wipe-options {
             display: flex;
             flex-direction: column;
@@ -1754,9 +1677,6 @@
             color: #64748b;
         }
 
-        /* ============================================================
-           Responsive
-           ============================================================ */
         @media (max-width: 600px) {
             body { padding: 12px; padding-bottom: 90px; }
             header { padding: 18px 15px; border-radius: 18px; }
@@ -1796,38 +1716,17 @@
             .info-modal-body { padding: 18px; font-size: 13.5px; }
             .info-modal-header h3 { font-size: 16px; }
 
-            .schedule-table,
-            .excel-table,
-            .unified-table {
-                font-size: 11px;
-            }
+            .schedule-table { font-size: 11px; }
             .schedule-table th,
-            .schedule-table td {
-                padding: 5px 2px;
-            }
+            .schedule-table td { padding: 5px 2px; }
             .schedule-table th.day-header,
             .schedule-table td.day-cell {
-                width: 55px;
+                width: 60px;
                 font-size: 11px;
-                position: sticky;
-                right: 0;
-                z-index: 2;
-                background: #f1f5f9;
             }
-            .schedule-table th.day-header {
-                background: linear-gradient(135deg, #3a7bd5, #2563eb);
-                color: white;
-            }
-            .schedule-table td.lesson-cell {
-                height: 58px;
-                min-width: 55px;
-            }
-            .lesson-subject {
-                font-size: 10.5px;
-            }
-            .lesson-teacher {
-                font-size: 9px;
-            }
+            .schedule-table td.lesson-cell { height: 65px; }
+            .lesson-subject { font-size: 11px; }
+            .lesson-teacher { font-size: 9.5px; }
 
             .log-modal { max-height: 90vh; }
             .log-modal-body { padding: 10px 12px 20px; }
@@ -1895,11 +1794,6 @@
 </head>
 <body>
 
-<!-- ============================================================
-     الجزء الأول: HTML الهيكلي
-     ============================================================ -->
-
-<!-- شاشة تسجيل الدخول -->
 <div class="login-card" id="loginBox">
     <header>
         <h2>🔐 تسجيل دخول المدرسين</h2>
@@ -1915,14 +1809,12 @@
     </div>
 </div>
 
-<!-- لوحة التحكم -->
 <div class="admin-panel hidden" id="adminBox">
     <header>
         <h1 id="welcomeHeader">لوحة تحكم المدرسين 👋</h1>
         <p>مدرسة محمد رجب الرسمية لغات</p>
     </header>
 
-    <!-- شريط البحث الشامل -->
     <div class="global-search-section">
         <div class="global-search-title">
             🔍 بحث شامل عن طالب (الاسم / الفصل / السلوك / الجدول)
@@ -1937,12 +1829,10 @@
         <div class="search-results-box" id="globalSearchResults"></div>
     </div>
 
-    <!-- حالة الاتصال -->
     <div class="connection-status loading" id="connectionStatus">
         ⏳ جاري الاتصال بقاعدة البيانات...
     </div>
 
-    <!-- القائمة الرئيسية -->
     <div class="main-menu-grid">
 
         <div class="menu-btn-wrapper">
@@ -1992,7 +1882,6 @@
 
     </div>
 
-    <!-- قسم 1: رفع Excel -->
     <div class="form-section" id="uploadTab">
         <h3>📤 رفع ملف Excel/CSV</h3>
         <div class="form-group">
@@ -2038,7 +1927,6 @@
         </div>
     </div>
 
-    <!-- قسم 2: المدرسين -->
     <div class="form-section" id="teachersTab">
         <h3>👨‍🏫 إدارة المدرسين</h3>
         <div class="form-group">
@@ -2147,7 +2035,6 @@
         </div>
     </div>
 
-    <!-- قسم 3: الجدول -->
     <div class="form-section" id="scheduleTab">
         <h3>📅 إدارة جداول الفصول</h3>
         <div class="form-group">
@@ -2169,7 +2056,6 @@
         </div>
     </div>
 
-    <!-- قسم 4: تسجيل سلوك -->
     <div class="form-section" id="behaviorTab">
         <h3>📝 تسجيل سلوك طالب</h3>
         <div class="form-group">
@@ -2195,7 +2081,6 @@
         </div>
     </div>
 
-    <!-- قسم 5: التنبيهات -->
     <div class="form-section" id="alertsTab">
         <h3>🔔 إرسال وإدارة التنبيهات</h3>
         <div class="form-group">
@@ -2228,7 +2113,6 @@
         </div>
     </div>
 
-    <!-- قسم 6: بحث / حذف الجداول -->
     <div class="form-section" id="manageSchedulesTab">
         <h3>🔍 بحث وحذف الجداول</h3>
         <div class="form-group">
@@ -2249,7 +2133,6 @@
         </div>
     </div>
 
-    <!-- قسم 7: بحث / حذف التنبيهات -->
     <div class="form-section" id="manageAlertsTab">
         <h3>🔍 بحث وحذف التنبيهات</h3>
         <div class="form-group">
@@ -2270,7 +2153,6 @@
         </div>
     </div>
 
-    <!-- قسم 8: إزالة طالب -->
     <div class="form-section" id="removeTab">
         <h3>🗑️ إزالة طالب</h3>
         <div class="form-group">
@@ -2287,7 +2169,6 @@
         </div>
     </div>
 
-    <!-- قسم 9: مسح البيانات -->
     <div class="form-section" id="wipeTab">
         <h3>⚠️ مسح البيانات</h3>
         <div class="form-group">
@@ -2348,12 +2229,10 @@
 
 </div>
 
-<!-- زر سجل النشاطات -->
 <button class="activity-log-btn hidden" id="activityLogBtn"
         onclick="openActivityLog()" title="سجل النشاطات"
         data-count="">📜</button>
 
-<!-- Info Modal -->
 <div class="info-modal-overlay" id="infoModalOverlay" onclick="closeInfoModalOnOverlay(event)">
     <div class="info-modal-box" onclick="event.stopPropagation()">
         <div class="info-modal-header">
@@ -2364,7 +2243,6 @@
     </div>
 </div>
 
-<!-- Modal سجل النشاطات -->
 <div class="log-modal-overlay" id="logModalOverlay" onclick="closeActivityLogOnOverlay(event)">
     <div class="log-modal" onclick="event.stopPropagation()">
         <div class="log-modal-header">
@@ -2389,7 +2267,6 @@
     </div>
 </div>
 
-<!-- Custom Modal -->
 <div class="custom-modal-overlay" id="customModalOverlay">
     <div class="custom-modal-box" onclick="event.stopPropagation()">
         <div class="custom-modal-header" id="customModalHeader">
@@ -2412,21 +2289,11 @@
     </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- SheetJS -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
-<!-- ============================================================
-     الجزء الثالث: JavaScript الأساسي + الجزء الرابع: JavaScript الإضافي
-     ============================================================ -->
 <script type="module">
-    /* ============================================================
-       الجزء الثالث: JavaScript الأساسي
-       (Firebase + المتغيرات + الدوال المساعدة + Toast + Modals + Activity Log)
-       ============================================================ */
-
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
         getFirestore, collection, doc, setDoc, deleteDoc, getDoc, getDocs,
@@ -2434,9 +2301,6 @@
         where
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    /* ============================================================
-       إعدادات Firebase
-       ============================================================ */
     const firebaseConfig = {
         apiKey: "AIzaSyC-SKxU2v29YW7ddjdoPEVfqVfeFapnbsQ",
         authDomain: "mohamedragabschool-8e9b6.firebaseapp.com",
@@ -2446,9 +2310,6 @@
         appId: "1:882767624230:web:90c6b11bd96801a28a4ae7"
     };
 
-    /* ============================================================
-       تهيئة Firebase
-       ============================================================ */
     let appFirebase = null;
     let db = null;
     let firebaseInitError = null;
@@ -2481,9 +2342,6 @@
     const WEEK_DAYS = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس"];
     const BATCH_SIZE = 450;
 
-    /* ============================================================
-       قائمة المخالفات
-       ============================================================ */
     const VIOLATIONS_LIST = [
         { label: "🚨 طالب مشاغب (بناءً على تقرير/إبلاغ المعلم)",       percent: 50 },
         { label: "🗣️ الثرثرة والتحدث المستمر (مخالفة سلوك)",          percent: 5  },
@@ -2500,9 +2358,6 @@
         { label: "🏚️ إتلاف أو تخريب الأثاث وممتلكات المدرسة",          percent: 5  }
     ];
 
-    /* ============================================================
-       المتغيرات العامة
-       ============================================================ */
     let studentsCache = [];
     let teachersCache = [];
     let schedulesCache = {};
@@ -2525,9 +2380,6 @@
     let excelParsedData = [];
     let excelStats = null;
 
-    /* ============================================================
-       دوال مساعدة عامة
-       ============================================================ */
     function showToast(message, type = 'success') {
         const toast = document.getElementById('toast');
         if (!toast) return;
@@ -2596,9 +2448,6 @@
         return '📘';
     }
 
-    /* ============================================================
-       IP
-       ============================================================ */
     async function fetchUserIP() {
         try {
             const res = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
@@ -2610,9 +2459,6 @@
         }
     }
 
-    /* ============================================================
-       سجل النشاطات
-       ============================================================ */
     async function logActivity(actionType, actionTitle, details = '', extraData = {}) {
         if (!currentUser || !db) return;
         try {
@@ -2757,9 +2603,6 @@
         }
     };
 
-    /* ============================================================
-       Custom Modal System
-       ============================================================ */
     let customModalResolve = null;
 
     window.showCustomModal = function(options) {
@@ -2834,9 +2677,6 @@
         });
     };
 
-    /* ============================================================
-       Info Modal System
-       ============================================================ */
     const INFO_CONTENT = {
         upload: {
             title: '📤 رفع ملف Excel/CSV',
@@ -3184,14 +3024,6 @@
         }
     };
 
-    /* ============================================================
-       الجزء الرابع: JavaScript الإضافي
-       (الشامل + الجدول الجديد + المدرسين + Batch/Upsert)
-       ============================================================ */
-
-    /* ============================================================
-       شريط البحث الشامل
-       ============================================================ */
     window.performGlobalSearch = function() {
         const input = document.getElementById('globalSearchInput');
         const query = input.value.trim();
@@ -3292,9 +3124,6 @@
         resultsBox.classList.add('show');
     };
 
-    /* ============================================================
-       البحث الداخلي (الطلاب)
-       ============================================================ */
     function searchStudents(query) {
         if (!query.trim() || query.length < 2) return [];
         const q = query.trim().toLowerCase();
@@ -3377,9 +3206,6 @@
         `;
     };
 
-    /* ============================================================
-       البحث عن المدرسين وعرض جدولهم
-       ============================================================ */
     window.searchTeachers = function(query) {
         const resultsBox = document.getElementById('searchTeacherResults');
         const scheduleView = document.getElementById('teacherScheduleView');
@@ -3492,9 +3318,6 @@
         scheduleView.innerHTML = html;
     };
 
-    /* ============================================================
-       البحث عن الجداول وحذفها
-       ============================================================ */
     window.searchSchedules = function(query) {
         const box = document.getElementById('schedulesSearchResults');
         const q = (query || '').trim().toLowerCase();
@@ -3663,9 +3486,6 @@
         }
     };
 
-    /* ============================================================
-       البحث عن التنبيهات وحذفها
-       ============================================================ */
     window.searchAlerts = function(query) {
         const box = document.getElementById('alertsSearchResults');
         const q = (query || '').trim().toLowerCase();
@@ -3800,9 +3620,6 @@
         }
     };
 
-    /* ============================================================
-       تسجيل الدخول
-       ============================================================ */
     window.login = async function() {
         const user = document.getElementById('username').value.trim();
         const pass = document.getElementById('password').value.trim();
@@ -3853,9 +3670,6 @@
         else group.classList.add('hidden');
     };
 
-    /* ============================================================
-       رفع ملف Excel
-       ============================================================ */
     window.handleExcelUpload = function(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -4018,9 +3832,6 @@
         showToast('تم إلغاء الرفع', 'info');
     };
 
-    /* ============================================================
-       رفع البيانات إلى Firebase (Batch + Upsert + Cache Update)
-       ============================================================ */
     window.confirmUploadToFirebase = async function() {
         if (excelParsedData.length === 0) {
             showToast('⚠️ مفيش بيانات للرفع', 'error');
@@ -4211,9 +4022,6 @@
         }
     };
 
-    /* ============================================================
-       مسح البيانات
-       ============================================================ */
     window.updateWipeOptionStyles = function() {
         const options = [
             { id: 'wipeStudents', optId: 'wipeOptionStudents' },
@@ -4338,9 +4146,6 @@
         }
     };
 
-    /* ============================================================
-       المدرسين
-       ============================================================ */
     window.addTeacher = async function() {
         const name = document.getElementById('newTeacherName').value.trim();
         const subject = document.getElementById('newTeacherSubject').value.trim();
@@ -4577,9 +4382,6 @@
         `).join('');
     }
 
-    /* ============================================================
-       توزيع الحصص (Auto-Sync)
-       ============================================================ */
     window.assignTeacherSlot = async function() {
         const teacherIdx = document.getElementById('assignTeacher').value;
         const day = document.getElementById('assignDay').value;
@@ -4742,9 +4544,6 @@
         `;
     };
 
-    /* ============================================================
-       الجدول الجديد (متوافق مع الشكل المدرسي الورقي)
-       ============================================================ */
     window.loadScheduleForClass = function() {
         const className = document.getElementById('scheduleClass').value;
         const displayArea = document.getElementById('scheduleDisplayArea');
@@ -4770,11 +4569,6 @@
         renderScheduleGrid(className, day);
     };
 
-    /**
-     * دالة عرض الجدول الجديدة (متوافقة مع الشكل المدرسي)
-     * تبني جدولاً حقيقياً: 5 صفوف (الأيام) × 9 أعمدة (الحصص)
-     * مع عرض المادة واسم المدرس، ودعم الحصص المزدوجة بـ colspan.
-     */
     function renderScheduleGrid(className, day) {
         const gridContainer = document.getElementById('scheduleGrid');
         if (!gridContainer) return;
@@ -4860,9 +4654,6 @@
         gridContainer.innerHTML = tableHTML;
     }
 
-    /* ============================================================
-       تسجيل سلوك
-       ============================================================ */
     document.addEventListener('DOMContentLoaded', () => {
         const typeSelect = document.getElementById('behaviorType');
         if (typeSelect) {
@@ -4952,9 +4743,6 @@
         }
     };
 
-    /* ============================================================
-       إزالة طالب
-       ============================================================ */
     window.confirmRemove = async function() {
         if (!selectedStudentForRemoval) {
             showToast('⚠️ ابحث واختر الطالب أولاً', 'error');
@@ -4989,9 +4777,6 @@
         }
     };
 
-    /* ============================================================
-       التنبيهات
-       ============================================================ */
     window.updateAlertCounter = function() {
         const text = document.getElementById('alertText').value.trim();
         const words = text ? text.split(/\s+/).length : 0;
@@ -5098,9 +4883,6 @@
         `).join('');
     };
 
-    /* ============================================================
-       القوائم المنسدلة
-       ============================================================ */
     function fillPercentSelect() {
         const select = document.getElementById('percentSelect');
         if (!select) return;
@@ -5172,9 +4954,6 @@
         }
     }
 
-    /* ============================================================
-       الاستماع الفوري للبيانات
-       ============================================================ */
     function listenToDatabase() {
         if (!db) {
             console.error('❌ Firestore غير مهيأ');
@@ -5261,9 +5040,6 @@
         }, (error) => console.error('❌ خطأ في التنبيهات:', error.code, error.message));
     }
 
-    /* ============================================================
-       التهيئة
-       ============================================================ */
     fillPercentSelect();
     fillBehaviorTypeSelect();
     const behaviorDateInput = document.getElementById('behaviorDate');
