@@ -21,6 +21,11 @@
     <link rel="icon" type="image/jpeg" sizes="32x32" href="./2.jpg">
     <link rel="icon" type="image/jpeg" sizes="16x16" href="./2.jpg">
 
+    <!-- ============================================================
+         PWA Manifest (سيتم إضافته ديناميكياً عبر JS)
+         ============================================================ -->
+    <link rel="manifest" id="pwa-manifest-link">
+
     <style>
         /* ============================================================
            إعدادات عامة
@@ -74,7 +79,7 @@
         }
 
         /* ============================================================
-           الهيدر (مع خلفية 1.jpg + overlay أزرق)
+           الهيدر (إرجاع صورة 1.jpg مع إزالة الشريط الأزرق فقط)
            ============================================================ */
         header {
             padding: 0;
@@ -97,19 +102,6 @@
             justify-content: center;
             gap: 10px;
             isolation: isolate;
-        }
-
-        /* طبقة تدرج أزرق شفاف فوق الصورة */
-        header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, 
-                        rgba(30, 58, 138, 0.78) 0%, 
-                        rgba(58, 123, 213, 0.68) 45%, 
-                        rgba(104, 139, 196, 0.62) 100%);
-            pointer-events: none;
-            z-index: 1;
         }
 
         /* اللوجو داخل الهيدر */
@@ -160,6 +152,11 @@
             min-height: calc(100vh - 180px);
             padding: 15px 5px 40px;
             animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .intro-header {
@@ -728,6 +725,10 @@
             background: linear-gradient(90deg, #e11d48, #be123c);
             box-shadow: 0 0 14px rgba(225, 29, 72, 0.5);
         }
+
+        /* ============================================================
+           نظام التقييم الجديد (بدلاً من شارة "تراجع في المستوى")
+           ============================================================ */
         .status-badge {
             display: inline-block;
             padding: 12px 26px;
@@ -747,6 +748,43 @@
             color: #be123c;
             border: 1px solid rgba(190, 18, 60, 0.25);
         }
+
+        /* شارات التقييم الجديدة حسب النسبة */
+        .eval-badge {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 28px;
+            font-size: 16px;
+            font-weight: 800;
+            margin: 22px 0 12px 0;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+            letter-spacing: 0.3px;
+        }
+        .eval-badge.eval-25 {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            border: 2px solid rgba(220, 38, 38, 0.4);
+            box-shadow: 0 8px 22px rgba(220, 38, 38, 0.35);
+        }
+        .eval-badge.eval-50 {
+            background: linear-gradient(135deg, #eab308, #facc15);
+            color: #422006;
+            border: 2px solid rgba(234, 179, 8, 0.5);
+            box-shadow: 0 8px 22px rgba(234, 179, 8, 0.4);
+        }
+        .eval-badge.eval-75 {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: 2px solid rgba(37, 99, 235, 0.4);
+            box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+        }
+        .eval-badge.eval-100 {
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            color: white;
+            border: 2px solid rgba(22, 163, 74, 0.4);
+            box-shadow: 0 8px 22px rgba(22, 163, 74, 0.35);
+        }
+
         .no-notes-message {
             color: #94a3b8;
             font-size: 14px;
@@ -790,6 +828,66 @@
             top: -1px;
         }
         .notes-list li:last-child { margin-bottom: 0; }
+
+        /* ============================================================
+           قائمة المدرسين في الفصل
+           ============================================================ */
+        .teachers-section {
+            margin-top: 28px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 22px 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            text-align: right;
+        }
+        .teachers-section h3 {
+            color: #1e3a8a;
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #eef2ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .teachers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .teacher-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(248, 250, 252, 0.9);
+            border-radius: 12px;
+            border-right: 4px solid #3a7bd5;
+            transition: all 0.25s ease;
+            gap: 10px;
+        }
+        .teacher-item:hover {
+            background: rgba(238, 242, 255, 0.95);
+            transform: translateX(-3px);
+            box-shadow: 0 4px 12px rgba(58, 123, 213, 0.10);
+        }
+        .teacher-item .teacher-name-display {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .teacher-item .teacher-subject-tag {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #1e3a8a;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            padding: 5px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
 
         /* ============================================================
            قائمة المخالفات (اللوائح)
@@ -860,57 +958,133 @@
         }
 
         /* ============================================================
-           الجدول
+           الجدول (تصميم احترافي مطابق للصورة تماماً)
            ============================================================ */
-        .schedule-day-block {
-            margin-bottom: 22px;
-            text-align: right;
+        .schedule-wrapper {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 20px 14px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            margin-top: 15px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        .schedule-day-title {
-            color: #1e3a8a;
-            margin-bottom: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            padding: 10px 16px;
-            background: rgba(238,242,255,0.9);
-            border-radius: 12px;
-            border-right: 4px solid #1e3a8a;
-        }
-        .schedule-slot {
-            background: rgba(219,234,254,0.75);
-            border-right: 4px solid #3a7bd5;
-            padding: 12px 16px;
-            border-radius: 12px;
+
+        .schedule-title-bar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 13px;
-            margin-bottom: 10px;
+            justify-content: center;
             gap: 10px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #f1f5f9;
             flex-wrap: wrap;
-            transition: all 0.25s ease;
         }
-        .schedule-slot:hover {
-            background: rgba(219,234,254,1);
-            transform: translateX(-3px);
+
+        .schedule-title-bar h2 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin: 0;
+            text-align: center;
         }
-        .schedule-slot strong { 
-            color: #1e3a8a; 
+
+        .schedule-title-bar .schedule-badge {
+            background: linear-gradient(135deg, #be123c, #e11d48);
+            color: white;
+            font-size: 11px;
             font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            box-shadow: 0 3px 10px rgba(190, 18, 60, 0.3);
+            white-space: nowrap;
         }
-        .schedule-slot .subject { 
-            color: #475569; 
-            flex: 1; 
-            text-align: center; 
-            font-weight: 600;
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            min-width: 100%;
         }
-        .schedule-slot .teacher { 
-            color: #64748b; 
-            font-size: 12px; 
+
+        .schedule-table thead th {
+            background: #f8fafc;
+            color: #1e3a8a;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 12px 6px;
+            text-align: center;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #cbd5e1;
+            white-space: nowrap;
+        }
+
+        .schedule-table thead th:first-child {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-size: 12px;
+            min-width: 70px;
+        }
+
+        .schedule-table tbody td {
+            border: 1px solid #cbd5e1;
+            padding: 10px 6px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 11.5px;
+            color: #334155;
+            background: #ffffff;
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .schedule-table tbody td.day-cell {
+            background: #f8fafc;
+            font-weight: 800;
+            color: #1e3a8a;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .schedule-table tbody td.subject-cell {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 12px;
+        }
+
+        .schedule-table tbody td.subject-cell .teacher-name {
+            display: block;
+            font-size: 10px;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 3px;
+        }
+
+        .schedule-table tbody td.empty-cell {
+            background: #ffffff;
+        }
+
+        .schedule-table tbody tr:hover td {
+            background: #f8fafc;
+        }
+
+        .schedule-table tbody tr:hover td.day-cell {
+            background: #eef2ff;
+        }
+
+        .schedule-table tbody td[colspan] {
+            font-weight: 700;
+            color: #0f172a;
+            background: #fefefe;
         }
 
         /* ============================================================
-           التنبيهات
+           التنبيهات والمشاريع
            ============================================================ */
         .alerts-list {
             display: flex;
@@ -961,6 +1135,21 @@
             font-size: 11.5px; 
             color: #94a3b8; 
             font-weight: 500;
+        }
+
+        /* زر التنبيهات والمشاريع */
+        .btn-alerts-projects {
+            background: linear-gradient(135deg, #d97706, #f39c12) !important;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-alerts-projects::after {
+            content: '✨';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            font-size: 14px;
+            opacity: 0.6;
         }
 
         /* ============================================================
@@ -1432,6 +1621,100 @@
         }
 
         /* ============================================================
+           PWA Install Banner
+           ============================================================ */
+        .pwa-install-banner {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(200px);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3a7bd5 100%);
+            color: white;
+            padding: 16px 22px;
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(30, 58, 138, 0.45),
+                        0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            max-width: 92%;
+            width: 400px;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pwa-install-banner.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .pwa-install-banner .pwa-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .pwa-install-banner .pwa-text {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .pwa-install-banner .pwa-text small {
+            display: block;
+            font-size: 11px;
+            opacity: 0.85;
+            font-weight: 400;
+            margin-top: 3px;
+        }
+
+        .pwa-install-banner .pwa-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .pwa-install-banner .pwa-btn-install {
+            background: white;
+            color: #1e3a8a;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 12.5px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .pwa-install-banner .pwa-btn-install:hover {
+            transform: scale(1.05);
+            background: #f8fafc;
+        }
+
+        .pwa-install-banner .pwa-btn-close {
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.25s ease;
+        }
+
+        .pwa-install-banner .pwa-btn-close:hover {
+            background: rgba(255, 255, 255, 0.32);
+        }
+
+        /* ============================================================
            Responsive - تصميم متجاوب
            ============================================================ */
 
@@ -1443,6 +1726,11 @@
             header h1 { font-size: 18px; padding: 0 12px; }
             .intro-logo { width: 95px; height: 95px; }
             .intro-title { font-size: 19px; }
+
+            .schedule-table thead th { font-size: 11px; padding: 10px 4px; }
+            .schedule-table tbody td { font-size: 11px; padding: 8px 4px; }
+            .schedule-table tbody td.subject-cell { font-size: 11px; }
+            .schedule-table tbody td.subject-cell .teacher-name { font-size: 9.5px; }
         }
 
         /* موبايل */
@@ -1613,6 +1901,35 @@
                 gap: 6px;
             }
             .schedule-slot .subject { text-align: right; }
+
+            /* جدول الجدول الدراسي على الموبايل */
+            .schedule-wrapper {
+                padding: 12px 6px;
+                border-radius: 14px;
+            }
+            .schedule-title-bar h2 { font-size: 15px; }
+            .schedule-title-bar .schedule-badge { font-size: 10px; padding: 3px 9px; }
+            .schedule-table thead th { font-size: 10px; padding: 8px 2px; }
+            .schedule-table thead th:first-child { font-size: 10px; min-width: 55px; }
+            .schedule-table tbody td { font-size: 10px; padding: 7px 2px; }
+            .schedule-table tbody td.day-cell { font-size: 10.5px; }
+            .schedule-table tbody td.subject-cell { font-size: 10px; }
+            .schedule-table tbody td.subject-cell .teacher-name { font-size: 8.5px; margin-top: 2px; }
+
+            .pwa-install-banner {
+                bottom: 75px;
+                padding: 14px 16px;
+                width: 94%;
+            }
+            .pwa-install-banner .pwa-icon { font-size: 22px; }
+            .pwa-install-banner .pwa-text { font-size: 12px; }
+            .pwa-install-banner .pwa-btn-install { padding: 8px 12px; font-size: 11.5px; }
+
+            .teachers-section { padding: 18px 16px; }
+            .teachers-section h3 { font-size: 15px; }
+            .teacher-item { padding: 10px 14px; }
+            .teacher-item .teacher-name-display { font-size: 13px; }
+            .teacher-item .teacher-subject-tag { font-size: 10.5px; padding: 4px 10px; }
         }
 
         /* شاشات صغيرة جداً */
@@ -1623,6 +1940,13 @@
             .intro-card-title { font-size: 13.5px; }
             .classes-grid { grid-template-columns: 1fr; }
             .card-top { font-size: 15px; }
+
+            .schedule-table thead th { font-size: 9px; padding: 6px 1px; }
+            .schedule-table thead th:first-child { font-size: 9px; min-width: 45px; }
+            .schedule-table tbody td { font-size: 9px; padding: 6px 1px; }
+            .schedule-table tbody td.day-cell { font-size: 9.5px; }
+            .schedule-table tbody td.subject-cell { font-size: 9px; }
+            .schedule-table tbody td.subject-cell .teacher-name { font-size: 7.5px; }
         }
 
         /* شاشات كبيرة */
@@ -1631,6 +1955,12 @@
             header { min-height: 155px; }
             header .header-logo { width: 78px; height: 78px; }
             header h1 { font-size: 21px; }
+
+            .schedule-table thead th { font-size: 13px; padding: 14px 8px; }
+            .schedule-table tbody td { font-size: 13px; padding: 14px 8px; }
+            .schedule-table tbody td.day-cell { font-size: 13.5px; }
+            .schedule-table tbody td.subject-cell { font-size: 13px; }
+            .schedule-table tbody td.subject-cell .teacher-name { font-size: 11px; }
         }
 
         /* ============================================================
@@ -1693,6 +2023,22 @@
             </div>
         </div>
     </div>
+
+    <!-- ============================================================
+         PWA Install Banner
+         ============================================================ -->
+    <div class="pwa-install-banner" id="pwaInstallBanner">
+        <div class="pwa-icon">📲</div>
+        <div class="pwa-text">
+            ثبّت التطبيق على جهازك
+            <small>للوصول السريع بدون إنترنت</small>
+        </div>
+        <div class="pwa-actions">
+            <button class="pwa-btn-install" onclick="installPWA()">تثبيت</button>
+            <button class="pwa-btn-close" onclick="dismissPWA()">✕</button>
+        </div>
+    </div>
+
     <!-- ============================================================
          Firebase SDK + JavaScript الرئيسي
          ============================================================ -->
@@ -1766,6 +2112,11 @@
         let complaintStudent = null;
         let complaintAgainst = null;
 
+        // PWA Variables
+        let deferredPrompt = null;
+        let pwaDismissCount = parseInt(localStorage.getItem('pwaDismissCount') || '0');
+        const PWA_MAX_DISMISS = 3;
+
         // ============================================================
         // دوال مساعدة
         // ============================================================
@@ -1773,6 +2124,34 @@
             if (score > 50) return '#22c55e';
             if (score > 0)  return '#f59e0b';
             return '#e11d48';
+        }
+
+        // دالة تحديد التقييم حسب النسبة
+        function getEvaluation(score) {
+            if (score >= 100) return { 
+                label: 'ممتاز', 
+                className: 'eval-100', 
+                icon: '🌟',
+                color: '#16a34a'
+            };
+            if (score >= 75) return { 
+                label: 'جيد / جيد جداً', 
+                className: 'eval-75', 
+                icon: '👍',
+                color: '#2563eb'
+            };
+            if (score >= 50) return { 
+                label: 'متوسط', 
+                className: 'eval-50', 
+                icon: '⚠️',
+                color: '#eab308'
+            };
+            return { 
+                label: 'منخفض في السلوك', 
+                className: 'eval-25', 
+                icon: '🚨',
+                color: '#dc2626'
+            };
         }
 
         function renderProgressBar(score, height = '10px') {
@@ -1801,6 +2180,46 @@
         }
 
         // ============================================================
+        // استخراج قائمة المدرسين من جدول الفصل
+        // ============================================================
+        function getTeachersForClass(className) {
+            const classId = classIdFromName(className);
+            const scheduleDoc = schedulesCache[classId] || {};
+            const weeklySchedule = scheduleDoc.weeklySchedule || {};
+
+            const teachersMap = new Map();
+
+            WEEK_DAYS.forEach(day => {
+                const daySchedule = weeklySchedule[day] || {};
+                Object.keys(daySchedule).forEach(slot => {
+                    const lesson = daySchedule[slot];
+                    if (lesson && typeof lesson === 'object') {
+                        const teacher = lesson.teacher || '';
+                        const subject = lesson.subject || lesson.name || '';
+                        if (teacher) {
+                            if (!teachersMap.has(teacher)) {
+                                teachersMap.set(teacher, new Set());
+                            }
+                            if (subject) {
+                                teachersMap.get(teacher).add(subject);
+                            }
+                        }
+                    }
+                });
+            });
+
+            const teachers = [];
+            teachersMap.forEach((subjects, teacher) => {
+                teachers.push({
+                    name: teacher,
+                    subjects: Array.from(subjects)
+                });
+            });
+
+            return teachers;
+        }
+
+        // ============================================================
         // Toast Notification
         // ============================================================
         function showToast(message, type = 'info') {
@@ -1818,6 +2237,113 @@
             }, 3000);
         }
         window.showToast = showToast;
+
+        // ============================================================
+        // PWA - التثبيت الذكي (3 مرات كحد أقصى)
+        // ============================================================
+        function initPWA() {
+            const manifestData = {
+                name: "مدرسة محمد رجب الرسمية ميامي لغات",
+                short_name: "مدرسة محمد رجب",
+                description: "بوابة الطلاب وأولياء الأمور",
+                start_url: ".",
+                display: "standalone",
+                background_color: "#eef4fb",
+                theme_color: "#1e3a8a",
+                dir: "rtl",
+                lang: "ar",
+                icons: [
+                    {
+                        src: "./2.jpg",
+                        sizes: "192x192",
+                        type: "image/jpeg",
+                        purpose: "any maskable"
+                    },
+                    {
+                        src: "./2.jpg",
+                        sizes: "512x512",
+                        type: "image/jpeg",
+                        purpose: "any maskable"
+                    }
+                ]
+            };
+
+            const manifestBlob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
+            const manifestURL = URL.createObjectURL(manifestBlob);
+            document.getElementById('pwa-manifest-link').setAttribute('href', manifestURL);
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                console.log('✅ PWA: beforeinstallprompt تم التقاطه');
+
+                if (pwaDismissCount < PWA_MAX_DISMISS) {
+                    setTimeout(() => {
+                        showPWABanner();
+                    }, 3000);
+                }
+            });
+
+            window.addEventListener('appinstalled', () => {
+                console.log('✅ PWA: تم تثبيت التطبيق بنجاح');
+                hidePWABanner();
+                showToast('✅ تم تثبيت التطبيق بنجاح', 'info');
+                deferredPrompt = null;
+            });
+
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('✅ PWA: التطبيق مثبت بالفعل');
+            }
+        }
+
+        function showPWABanner() {
+            if (pwaDismissCount >= PWA_MAX_DISMISS) {
+                console.log('⛔ PWA: تم رفض البانر 3 مرات، لن يظهر مرة أخرى');
+                return;
+            }
+            const banner = document.getElementById('pwaInstallBanner');
+            if (banner) {
+                banner.classList.add('show');
+            }
+        }
+
+        function hidePWABanner() {
+            const banner = document.getElementById('pwaInstallBanner');
+            if (banner) {
+                banner.classList.remove('show');
+            }
+        }
+
+        window.installPWA = function() {
+            if (!deferredPrompt) {
+                showToast('⚠️ التثبيت غير متاح حالياً', 'error');
+                return;
+            }
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('✅ PWA: المستخدم وافق على التثبيت');
+                    showToast('✅ جاري تثبيت التطبيق...', 'info');
+                } else {
+                    console.log('❌ PWA: المستخدم رفض التثبيت');
+                }
+                deferredPrompt = null;
+                hidePWABanner();
+            });
+        };
+
+        window.dismissPWA = function() {
+            pwaDismissCount++;
+            localStorage.setItem('pwaDismissCount', pwaDismissCount.toString());
+            console.log(`📊 PWA: تم رفض البانر ${pwaDismissCount} من ${PWA_MAX_DISMISS}`);
+            hidePWABanner();
+
+            if (pwaDismissCount >= PWA_MAX_DISMISS) {
+                console.log('⛔ PWA: تم الوصول للحد الأقصى من الرفض');
+            } else {
+                showToast(`سيظهر مرة أخرى (${pwaDismissCount}/${PWA_MAX_DISMISS})`, 'info');
+            }
+        };
 
         // ============================================================
         // شاشة البداية (Intro)
@@ -2052,6 +2578,9 @@
             const boys = classStudents.filter(s => s.gender === 'boy');
             const girls = classStudents.filter(s => s.gender === 'girl');
 
+            // استخراج قائمة المدرسين من جدول الفصل
+            const teachers = getTeachersForClass(className);
+
             app.innerHTML = `
                 <header>
                     <div class="header-logo"></div>
@@ -2088,11 +2617,27 @@
                     ${girls.map(s => renderStudentCard(s)).join('')}
                 ` : ''}
 
+                ${teachers.length > 0 ? `
+                    <div class="teachers-section">
+                        <h3>👨‍🏫 المدرسون في الفصل (${teachers.length})</h3>
+                        <div class="teachers-list">
+                            ${teachers.map(t => `
+                                <div class="teacher-item">
+                                    <span class="teacher-name-display">👤 ${t.name}</span>
+                                    ${t.subjects.length > 0 ? `
+                                        <span class="teacher-subject-tag">${t.subjects.join(' • ')}</span>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
                 <div class="btn-group-actions">
                     <button class="btn-action btn-schedule" 
                             onclick="navigateToSchedule('${className.replace(/'/g, "\\'")}')">📅 الجدول</button>
-                    <button class="btn-action btn-alerts" 
-                            onclick="navigateToAlerts('${className.replace(/'/g, "\\'")}')">🔔 التنبيهات</button>
+                    <button class="btn-action btn-alerts btn-alerts-projects" 
+                            onclick="navigateToAlerts('${className.replace(/'/g, "\\'")}')">🔔 تنبيهات والمشاريع</button>
                 </div>
             `;
         }
@@ -2153,7 +2698,11 @@
 
             const score = student.behaviorScore || 100;
             const notes = student.behaviorNotes || [];
-            const isGood = score === 100;
+            const evaluation = getEvaluation(score);
+
+            // تحديد لون شريط التقدم بناءً على النسبة
+            let progressColorClass = 'bad';
+            if (score >= 75) progressColorClass = 'good';
 
             app.innerHTML = `
                 <button class="btn-back" onclick="goBack()"><span>→</span> العودة للخلف</button>
@@ -2163,28 +2712,27 @@
                     <p class="report-class-label">${student.class} — ${student.grade}</p>
 
                     <div class="report-score-row">
-                        <div class="report-score-number ${isGood ? 'good' : 'bad'}">${score}%</div>
+                        <div class="report-score-number ${progressColorClass}">${score}%</div>
                         <div class="report-progress">
-                            <div class="report-progress-fill ${isGood ? 'good' : 'bad'}" 
+                            <div class="report-progress-fill ${progressColorClass}" 
                                  style="width: ${score}%;"></div>
                         </div>
                     </div>
 
-                    ${isGood ? `
-                        <div class="status-badge good">✨ طالب متميز ✨</div>
-                        <div class="no-notes-message">لا توجد ملاحظات الآن</div>
+                    <!-- نظام التقييم الجديد حسب النسبة -->
+                    <div class="eval-badge ${evaluation.className}">
+                        ${evaluation.icon} ${evaluation.label}
+                    </div>
+
+                    ${notes.length > 0 ? `
+                        <div class="reasons-title">أسباب انخفاض السلوك:</div>
+                        <ul class="notes-list">
+                            ${notes.map(n => `<li>${n}</li>`).join('')}
+                        </ul>
                     ` : `
-                        <div class="status-badge bad">⚠️ تراجع في مستوى السلوك</div>
-                        ${notes.length > 0 ? `
-                            <div class="reasons-title">أسباب انخفاض السلوك:</div>
-                            <ul class="notes-list">
-                                ${notes.map(n => `<li>${n}</li>`).join('')}
-                            </ul>
-                        ` : `
-                            <div class="no-notes-message" style="color: #64748b;">
-                                لا توجد ملاحظات تفصيلية
-                            </div>
-                        `}
+                        <div class="no-notes-message" style="color: #64748b;">
+                            لا توجد ملاحظات تفصيلية
+                        </div>
                     `}
                 </div>
             `;
@@ -2192,7 +2740,7 @@
         window.renderReportView = renderReportView;
 
         // ============================================================
-        // البحث
+        // البحث (يعرض كل الطلاب الذين يطابقون الاسم)
         // ============================================================
         window.handleSearch = function(query) {
             if (!query || query.trim().length < 2) {
@@ -2227,7 +2775,7 @@
                 <button class="btn-back" onclick="goBack()"><span>→</span> العودة للخلف</button>
 
                 <div class="section-header">
-                    <span>🔍 نتائج البحث</span>
+                    <span>🔍 نتائج البحث عن "${escapeHtml(query)}"</span>
                     <span class="count-badge">${results.length}</span>
                 </div>
 
@@ -2287,7 +2835,7 @@
         window.renderViolationsView = renderViolationsView;
 
         // ============================================================
-        // الجدول الأسبوعي
+        // الجدول الأسبوعي (تصميم احترافي مطابق للصورة)
         // ============================================================
         window.navigateToSchedule = function(className) {
             history.pushState({ view: 'schedule', className }, '', `#schedule-${className}`);
@@ -2301,20 +2849,22 @@
             const classId = classIdFromName(className);
             const scheduleDoc = schedulesCache[classId] || {};
             const weeklySchedule = scheduleDoc.weeklySchedule || {};
+            const hasSchedule = Object.keys(weeklySchedule).length > 0;
 
             app.innerHTML = `
                 <button class="btn-back" onclick="goBack()">
                     <span>→</span> العودة للخلف
                 </button>
 
-                <div class="report-card">
-                    <h2>📅 جدول الحصص</h2>
-                    <p style="color: #64748b; margin-top: 5px; font-size: 13px;">${className}</p>
-
-                    ${Object.keys(weeklySchedule).length > 0
-                        ? `<div style="margin-top: 20px;">${renderScheduleTable(weeklySchedule)}</div>`
+                <div class="schedule-wrapper">
+                    <div class="schedule-title-bar">
+                        <h2>📅 جدول حصص الفصل (${className})</h2>
+                        <span class="schedule-badge">الأسبوع</span>
+                    </div>
+                    ${hasSchedule 
+                        ? renderProfessionalScheduleTable(weeklySchedule)
                         : `
-                            <div class="empty-state" style="padding: 35px; margin-top: 15px;">
+                            <div class="empty-state" style="padding: 35px; margin-top: 15px; border: none;">
                                 <span class="empty-icon">📅</span>
                                 <div class="empty-title">لا يوجد جدول بعد</div>
                                 <div class="empty-desc">
@@ -2328,43 +2878,97 @@
             `;
         }
 
-        function renderScheduleTable(weeklySchedule) {
-            let html = '';
-            let hasAnyLesson = false;
+        function renderProfessionalScheduleTable(weeklySchedule) {
+            const MAX_SLOTS = 9;
 
+            const daysData = {};
             WEEK_DAYS.forEach(day => {
-                const daySchedule = weeklySchedule[day];
-                if (daySchedule && Object.keys(daySchedule).length > 0) {
-                    hasAnyLesson = true;
-                    html += `
-                        <div class="schedule-day-block">
-                            <div class="schedule-day-title">📆 ${day}</div>
-                            ${Object.keys(daySchedule).sort((a, b) => a - b).map(slot => {
-                                const lesson = daySchedule[slot];
-                                const subject = lesson.subject || lesson.name || lesson;
-                                const teacher = lesson.teacher || '';
-                                return `
-                                    <div class="schedule-slot">
-                                        <strong>الحصة ${slot}</strong>
-                                        <span class="subject">${subject}</span>
-                                        ${teacher ? `<span class="teacher">👤 ${teacher}</span>` : ''}
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                    `;
+                daysData[day] = {};
+                const daySchedule = weeklySchedule[day] || {};
+                for (let i = 1; i <= MAX_SLOTS; i++) {
+                    daysData[day][i] = daySchedule[i] || daySchedule[String(i)] || null;
                 }
             });
 
-            return hasAnyLesson ? html : `
-                <div class="empty-state" style="padding: 25px;">
-                    <div class="empty-desc">لم يتم إضافة حصص بعد</div>
-                </div>
+            let html = `
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>اليوم</th>
+                            ${Array.from({length: MAX_SLOTS}, (_, i) => `<th>${i + 1}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
             `;
+
+            WEEK_DAYS.forEach(day => {
+                const dayData = daysData[day];
+                const cells = [];
+                let i = 1;
+
+                const dayCell = `<td class="day-cell">${day}</td>`;
+
+                while (i <= MAX_SLOTS) {
+                    const lesson = dayData[i];
+                    
+                    if (!lesson) {
+                        cells.push(`<td class="empty-cell"></td>`);
+                        i++;
+                        continue;
+                    }
+
+                    const subject = lesson.subject || lesson.name || lesson || '';
+                    const teacher = lesson.teacher || '';
+                    const teacherKey = teacher || subject;
+
+                    let span = 1;
+                    let j = i + 1;
+                    while (j <= MAX_SLOTS) {
+                        const nextLesson = dayData[j];
+                        if (nextLesson) {
+                            const nextSubject = nextLesson.subject || nextLesson.name || nextLesson || '';
+                            const nextTeacher = nextLesson.teacher || '';
+                            const nextTeacherKey = nextTeacher || nextSubject;
+                            if (nextTeacherKey === teacherKey && teacherKey) {
+                                span++;
+                                j++;
+                                continue;
+                            }
+                        }
+                        break;
+                    }
+
+                    if (span > 1) {
+                        cells.push(`
+                            <td class="subject-cell" colspan="${span}">
+                                ${subject}
+                                ${teacher ? `<span class="teacher-name">${teacher}</span>` : ''}
+                            </td>
+                        `);
+                    } else {
+                        cells.push(`
+                            <td class="subject-cell">
+                                ${subject}
+                                ${teacher ? `<span class="teacher-name">${teacher}</span>` : ''}
+                            </td>
+                        `);
+                    }
+                    i += span;
+                }
+
+                html += `<tr>${dayCell}${cells.join('')}</tr>`;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            return html;
         }
 
         // ============================================================
-        // التنبيهات
+        // التنبيهات والمشاريع
         // ============================================================
         window.navigateToAlerts = function(className) {
             history.pushState({ view: 'alerts', className }, '', `#alerts-${className}`);
@@ -2395,7 +2999,7 @@
                 </button>
 
                 <div class="report-card">
-                    <h2>🔔 التنبيهات</h2>
+                    <h2>🔔 تنبيهات والمشاريع</h2>
                     <p style="color: #64748b; margin-top: 5px; font-size: 13px;">${className}</p>
 
                     ${(classAlerts.length > 0 || allNotes.length > 0) ? `
@@ -2432,7 +3036,7 @@
                     ` : `
                         <div class="empty-state" style="padding: 35px; margin-top: 15px;">
                             <span class="empty-icon">🔔</span>
-                            <div class="empty-title">لا توجد تنبيهات</div>
+                            <div class="empty-title">لا توجد تنبيهات أو مشاريع</div>
                             <div class="empty-desc">جميع الطلاب في حالة سلوك جيدة</div>
                         </div>
                     `}
@@ -2820,6 +3424,9 @@
                 if (currentView === 'schedule' && currentClass) {
                     renderScheduleView(currentClass);
                 }
+                if (currentView === 'class' && currentClass) {
+                    renderClassView(currentClass);
+                }
             }, (error) => {
                 console.error('❌ خطأ في تحميل الجداول:', error);
             });
@@ -2876,6 +3483,7 @@
         // التهيئة
         // ============================================================
         preventZoom();
+        initPWA();
         history.replaceState({ view: 'intro' }, '', ' ');
         renderIntroScreen();
         listenToDatabase();
